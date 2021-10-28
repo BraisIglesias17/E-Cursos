@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">E-Curso</string>
+    <string name="registrate">Regístrate</string>
+    <string name="usuario">usuario</string>
+    <string name="passwd">contraseña</string>
+    <string name="login">entrar</string>
+</resources>
