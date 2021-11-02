@@ -8,8 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.e_curso.view.MenuAdministrador;
+import com.example.e_curso.view.MenuPrincipal;
 import com.example.e_curso.view.Registro;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,13 +25,45 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView bt= (TextView) this.findViewById(R.id.etSignIn);
+        Button botonLogIn=(Button) this.findViewById(R.id.btLogIn);
+
+
+        botonLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                boolean acceder=MainActivity.this.checkLogIn();
+                boolean admin=true;
+                if(acceder && !admin){
+                    Intent menu_principal=new Intent(MainActivity.this, MenuPrincipal.class);
+                    menu_principal.putExtra("username","OBTENER DE PREFERENCIAS");
+                    MainActivity.this.startActivity(menu_principal);
+
+
+
+
+                }else if(acceder && admin){
+                    Intent menu_principal_admin=new Intent(MainActivity.this, MenuAdministrador.class);
+                    menu_principal_admin.putExtra("username","OBTENER DE PREFERENCIAS");
+                    MainActivity.this.startActivity(menu_principal_admin);
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent subActividad = new Intent( MainActivity.this, Registro.class );
-                MainActivity.this.startActivityForResult( subActividad,0);
+                MainActivity.this.startActivity(subActividad);
+                //MainActivity.this.startActivityForResult( subActividad,0);
             }
         });
+    }
+
+    private boolean checkLogIn() {
+        return true;
     }
 }

@@ -27,7 +27,6 @@
                 android:hint="@string/usuario"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="@string/usuario"
                 android:textAlignment="center"
                 android:textSize="23sp" />
         </LinearLayout>
@@ -45,10 +44,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/passwd"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:password="true"
-                android:text="@string/passwd"
                 android:textAlignment="center"
                 android:textSize="23sp" />
 
