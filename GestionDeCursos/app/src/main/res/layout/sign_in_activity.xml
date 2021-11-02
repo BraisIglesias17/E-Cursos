@@ -121,6 +121,7 @@
                 android:layout_weight="0.3"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:password="true"
                 android:textSize="23sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
