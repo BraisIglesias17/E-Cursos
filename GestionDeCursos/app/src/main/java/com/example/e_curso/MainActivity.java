@@ -36,16 +36,14 @@ public class MainActivity extends AppCompatActivity {
                 boolean admin=true;
                 if(acceder && !admin){
                     Intent menu_principal=new Intent(MainActivity.this, MenuPrincipal.class);
-                    menu_principal.putExtra("username","OBTENER DE PREFERENCIAS");
-                    MainActivity.this.startActivity(menu_principal);
-
+                    MainActivity.this.goTo(menu_principal,"nombeusuario");
 
 
 
                 }else if(acceder && admin){
                     Intent menu_principal_admin=new Intent(MainActivity.this, MenuAdministrador.class);
-                    menu_principal_admin.putExtra("username","OBTENER DE PREFERENCIAS");
-                    MainActivity.this.startActivity(menu_principal_admin);
+                    MainActivity.this.goTo(menu_principal_admin,"nombeusuario");
+
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();
@@ -61,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 //MainActivity.this.startActivityForResult( subActividad,0);
             }
         });
+    }
+    private void goTo(Intent intent, String username){
+        intent.putExtra("username",username);
+        this.startActivity(intent);
     }
 
     private boolean checkLogIn() {
