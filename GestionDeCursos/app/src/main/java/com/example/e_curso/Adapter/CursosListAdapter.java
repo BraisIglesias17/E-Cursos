@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
@@ -24,10 +25,19 @@ public class CursosListAdapter extends ArrayAdapter {
         Curso curso=(Curso) this.getItem(position);
 
         if(view==null){
-            //view= inflater.inflate(R.layout.,null);
+            view= inflater.inflate(R.layout.listview_curso,null);
+
         }
 
         //rellenar con datos de Curso
+
+        TextView nombre=(TextView) view.findViewById(R.id.tvNombreCurso);
+        TextView tematica=(TextView) view.findViewById(R.id.tvTematicaCurso);
+        TextView fecha=(TextView) view.findViewById(R.id.tvFechaCurso);
+
+        nombre.setText(curso.getNombreCurso());
+        tematica.setText(curso.getTematica());
+        fecha.setText(curso.getFechaFormato());
 
         return view;
 

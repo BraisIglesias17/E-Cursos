@@ -4,8 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/list_curso_activity.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/list_curso_activiy.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/list_usuarios.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/menu_principal_usuario_activity.xml" value="0.25416666666666665" />
@@ -17,6 +15,7 @@
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/ver_solicitudes.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/ver_usuario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/listview_curso.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_usuario_activity.xml" value="0.25416666666666665" />
       </map>
