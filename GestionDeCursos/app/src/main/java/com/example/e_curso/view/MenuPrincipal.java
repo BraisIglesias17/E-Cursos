@@ -12,17 +12,11 @@ import com.example.e_curso.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-
+    public static String CURSOS_APUNTADOS="misCursos";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal_usuario_activity);
-
-
-
-
-
-
         this.gestionVerCursos();
         this.gestionVerCursosApuntados();
 
@@ -34,7 +28,9 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
+                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,true);
+                MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
 
@@ -45,7 +41,9 @@ public class MenuPrincipal extends AppCompatActivity {
         btVerMisCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
+                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,false);
+                MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
     }
