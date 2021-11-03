@@ -1,32 +1,54 @@
 package com.example.e_curso.view;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.Adapter.CursosListAdapter;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class VerCursos extends AppCompatActivity {
 
 
+    private static final String MENSAJE_AYUDA_CURSOS = "Manten pulsado sobre un curso para ver las opciones";
     CursosListAdapter adapter;
-    List<Curso> cursos;
+    ArrayList<Curso> cursos;
     boolean creador;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_principal_usuario_activity);
+        setContentView(R.layout.ver_cursos_activity);
+        this.gestionAyuda();
 
 
-        ListView listViewCursos=this.findViewById(R.id.listViewCursosGenerales);
+        this.mockUpMethod();
+        ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
+        listViewCursos.setAdapter(this.adapter);
 
+
+        listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(VerCursos.this,"Hola",Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         //ESTA CLASE DEBERA DISPARAR UNA BUSQUEDA SOBRE LA BASE DE DATOS
 
         if(creador){
@@ -36,5 +58,29 @@ public class VerCursos extends AppCompatActivity {
         }
 
         listViewCursos.setAdapter(adapter);
+    }
+
+    private void gestionAyuda() {
+        ImageView img=this.findViewById(R.id.imgHelp);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(VerCursos.this);
+                builder.setTitle("Ayuda");
+                builder.setMessage(MENSAJE_AYUDA_CURSOS);
+                builder.setNeutralButton("Volver",null);
+                builder.create().show();
+
+            }
+        });
+    }
+
+    private void mockUpMethod(){
+        this.cursos=new ArrayList<>();
+        this.cursos.add(new Curso("It will be fun","Forgery","Security",30,new Date(),2));
+
+        this.adapter=new CursosListAdapter(this,this.cursos);
+
+
     }
 }

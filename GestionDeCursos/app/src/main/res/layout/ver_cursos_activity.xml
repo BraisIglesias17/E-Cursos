@@ -54,13 +54,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/listViewCursosGenerales"
             android:layout_width="match_parent"
             android:layout_height="402dp"
             android:layout_weight="0.25"
             android:orientation="horizontal">
 
             <ListView
+                android:id="@+id/listViewCursosGenerales"
                 android:layout_width="match_parent"
                 android:layout_height="540dp" />
         </LinearLayout>
