@@ -1,8 +1,9 @@
 package com.example.e_curso.core;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Curso {
+public class Curso implements Serializable {
 
     private String descripcion;
     private String nombreCurso;

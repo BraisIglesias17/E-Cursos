@@ -1,5 +1,6 @@
 package com.example.e_curso.view;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,7 @@ public class VerCursos extends AppCompatActivity {
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(VerCursos.this,"Hola",Toast.LENGTH_SHORT).show();
+                VerCursos.this.goToVerDetalle(i);
                 return true;
             }
         });
@@ -58,6 +59,13 @@ public class VerCursos extends AppCompatActivity {
         }
 
         listViewCursos.setAdapter(adapter);
+    }
+
+    private void goToVerDetalle(int i) {
+        Intent intent=new Intent(VerCursos.this,VerCursoDetalle.class);
+        Curso seleccionado=this.cursos.get(i);
+        intent.putExtra("curso",seleccionado);
+        this.startActivity(intent);
     }
 
     private void gestionAyuda() {
