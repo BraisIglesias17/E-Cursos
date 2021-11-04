@@ -39,9 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="Buscar curso"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="buscar curso"
+                android:text=" "
                 android:textAlignment="center" />
 
             <Button

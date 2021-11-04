@@ -2,6 +2,7 @@ package com.example.e_curso.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,12 +14,18 @@ import com.example.e_curso.R;
 public class MenuPrincipal extends AppCompatActivity {
 
     public static String CURSOS_APUNTADOS="misCursos";
+    public static String ES_CREADOR="esCreador";
+
+    boolean creador=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal_usuario_activity);
         this.gestionVerCursos();
         this.gestionVerCursosApuntados();
+
+
+        //ESTABLECER SI ES UN CREADOR CON UNA SHAREDPREFERENCE
 
     }
 
@@ -30,6 +37,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
                 verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,true);
+                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR, MenuPrincipal.this.creador);
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
@@ -43,6 +51,7 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View view) {
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
                 verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,false);
+                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR,MenuPrincipal.this.creador);
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
