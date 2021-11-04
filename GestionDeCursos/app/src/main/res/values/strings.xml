@@ -4,4 +4,15 @@
     <string name="usuario">usuario</string>
     <string name="passwd">contraseña</string>
     <string name="login">entrar</string>
+    <string name="curso">Curso</string>
+    <string name="descripcion">Descripción</string>
+    <string name="fecha">Fecha</string>
+    <string name="duracion">Duración</string>
+    <string name="numAsist">Número de Asistentes</string>
+    <string name="verCursos">Ver Cursos</string>
+    <string name="verMisCursos">Ver Mis Cursos</string>
+    <string name="verCursosPublicados">Ver Cursos Publicados</string>
+    <string name="verUsuarios">Usuarios</string>
+    <string name="verSolicitudes">Solicitudes</string>
+
 </resources>

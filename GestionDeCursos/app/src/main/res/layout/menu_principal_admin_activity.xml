@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:width="310dip"
-                android:text="USUARIOS"
+                android:text="@string/verUsuarios"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:width="310dip"
-                android:text="SOLICITUDES"
+                android:text="@string/verSolicitudes"
                 android:textSize="20sp" />
         </LinearLayout>
 
