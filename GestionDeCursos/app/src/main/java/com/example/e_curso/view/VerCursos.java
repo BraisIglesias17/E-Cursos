@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,15 +29,19 @@ public class VerCursos extends AppCompatActivity {
     private static final String MENSAJE_AYUDA_CURSOS = "Manten pulsado sobre un curso para ver las opciones";
     CursosListAdapter adapter;
     ArrayList<Curso> cursos;
+    //ControladorCurso
     boolean creador;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
-        this.gestionAyuda();
 
+        this.creador=Boolean.parseBoolean(this.getIntent().getExtras().get(MenuPrincipal.ES_CREADOR).toString());
+        this.drawInterface();
+
+
+        this.gestionAyuda();
 
         this.mockUpMethod();
         ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
@@ -51,16 +56,25 @@ public class VerCursos extends AppCompatActivity {
             }
         });
         //ESTA CLASE DEBERA DISPARAR UNA BUSQUEDA SOBRE LA BASE DE DATOS
-
+        /*
+        Button btGeneral= (Button) this.findViewById(R.id.btGuardarCambios);
         if(creador){
             //SE BUSCA LOS CREADOS POR EL USUARIO
+            btGeneral.setText("Guardar cambios");
         }else{
             //SE BUSCAN TODOS
-        }
+            btGeneral.setText("Apuntarse");
+        }*/
 
         listViewCursos.setAdapter(adapter);
     }
 
+    private void drawInterface(){
+        Button btAdd=(Button) this.findViewById(R.id.btAddNuevoCurso);
+        if(!this.creador){
+            btAdd.setVisibility(Button.GONE);
+        }
+    }
     private void goToVerDetalle(int i) {
         Intent intent=new Intent(VerCursos.this,VerCursoDetalle.class);
         Curso seleccionado=this.cursos.get(i);

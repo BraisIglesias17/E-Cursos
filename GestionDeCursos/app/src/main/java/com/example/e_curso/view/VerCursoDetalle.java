@@ -1,6 +1,7 @@
 package com.example.e_curso.view;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,20 +14,27 @@ import org.w3c.dom.Text;
 
 public class VerCursoDetalle extends AppCompatActivity {
 
+
+    boolean creador;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_curso_detalle_activity);
         Curso c=(Curso) this.getIntent().getExtras().get("curso");
+
         this.rellenarDatos(c);
+
+
+
     }
 
     private void rellenarDatos(Curso c){
 
         TextView nombreCurso=(TextView)this.findViewById(R.id.tvNombreCursoDetalle);
         TextView descripcion=(TextView)this.findViewById(R.id.tvResumenCurso);
-        EditText fecha=(EditText)this.findViewById(R.id.etFechaCurso);
-        EditText duracion=(EditText)this.findViewById(R.id.etDuracionCurso);
-        EditText numAsistentes=(EditText)this.findViewById(R.id.etMaxAsistentes);
+        TextView fecha=(TextView)this.findViewById(R.id.etFechaCurso);
+        TextView duracion=(TextView)this.findViewById(R.id.etDuracionCurso);
+        TextView numAsistentes=(TextView)this.findViewById(R.id.etMaxAsistentes);
 
         fecha.setEnabled(false);
         duracion.setEnabled(false);
