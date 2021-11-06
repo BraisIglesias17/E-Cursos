@@ -3,15 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/crear_modificar_curso.xml" value="0.24139492753623187" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/listview_curso.xml" value="0.1793478260869565" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.24592391304347827" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_usuario_activity.xml" value="0.24592391304347827" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/sign_in_activity.xml" value="0.24592391304347827" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_curso_detalle_activity.xml" value="0.1793478260869565" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_cursos_activity.xml" value="0.2" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_solicitudes.xml" value="0.24592391304347827" />
-        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_usuario.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/list_usuarios.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.36666666666666664" />
@@ -24,6 +15,7 @@
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/ver_solicitudes.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/ver_usuario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/crear_modificar_curso.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/listview_curso.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/USUARIO/Desktop/proyectoDM/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_usuario_activity.xml" value="0.25416666666666665" />

@@ -23,9 +23,6 @@ public class VerCursoDetalle extends AppCompatActivity {
         Curso c=(Curso) this.getIntent().getExtras().get("curso");
 
         this.rellenarDatos(c);
-
-
-
     }
 
     private void rellenarDatos(Curso c){

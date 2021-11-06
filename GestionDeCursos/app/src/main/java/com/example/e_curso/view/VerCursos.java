@@ -51,7 +51,7 @@ public class VerCursos extends AppCompatActivity {
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                VerCursos.this.goToVerDetalle(i);
+
                 return true;
             }
         });
