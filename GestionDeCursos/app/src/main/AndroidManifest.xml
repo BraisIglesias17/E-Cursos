@@ -65,6 +65,16 @@
 
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.CrearCurso"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

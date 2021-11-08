@@ -1,16 +1,12 @@
 package com.example.e_curso.view;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
-
-import org.w3c.dom.Text;
 
 public class VerCursoDetalle extends AppCompatActivity {
 
@@ -28,7 +24,7 @@ public class VerCursoDetalle extends AppCompatActivity {
     private void rellenarDatos(Curso c){
 
         TextView nombreCurso=(TextView)this.findViewById(R.id.tvNombreCursoDetalle);
-        TextView descripcion=(TextView)this.findViewById(R.id.tvResumenCurso);
+        TextView descripcion=(TextView)this.findViewById(R.id.tvResumenCursoDetalle);
         TextView fecha=(TextView)this.findViewById(R.id.etFechaCurso);
         TextView duracion=(TextView)this.findViewById(R.id.etDuracionCurso);
         TextView numAsistentes=(TextView)this.findViewById(R.id.etMaxAsistentes);
@@ -39,7 +35,7 @@ public class VerCursoDetalle extends AppCompatActivity {
 
         nombreCurso.setText(c.getNombreCurso());
         descripcion.setText(c.getDescripcion());
-        duracion.setText(c.getDescripcion());
+        duracion.setText((int) c.getDuracion());
         //numAsistentes.setText(c.getMaxAsistentes());
         fecha.setText(c.getFechaFormato());
 
