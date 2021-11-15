@@ -65,6 +65,25 @@
 
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.VerUsuarios"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.VerUsuarioConcreto"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
