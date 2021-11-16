@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 
+import java.security.MessageDigest;
+
 public class VerCursoDetalle extends AppCompatActivity {
 
 
@@ -17,6 +19,7 @@ public class VerCursoDetalle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_curso_detalle_activity);
         Curso c=(Curso) this.getIntent().getExtras().get("curso");
+
 
         this.rellenarDatos(c);
     }
@@ -35,7 +38,7 @@ public class VerCursoDetalle extends AppCompatActivity {
 
         nombreCurso.setText(c.getNombreCurso());
         descripcion.setText(c.getDescripcion());
-        duracion.setText((int) c.getDuracion());
+        duracion.setText(Double.toString(c.getDuracion()));
         //numAsistentes.setText(c.getMaxAsistentes());
         fecha.setText(c.getFechaFormato());
 

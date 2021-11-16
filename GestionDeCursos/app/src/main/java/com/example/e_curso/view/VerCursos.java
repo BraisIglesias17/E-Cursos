@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.e_curso.Adapter.CursosListAdapter;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
+import com.example.e_curso.database.DBManager;
+import com.example.e_curso.general.MyApplication;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +34,12 @@ public class VerCursos extends AppCompatActivity {
     //ControladorCurso
     boolean creador;
 
+
+    //no es necesario ARRAYLIST
+    //TODO CON CURSORES SOBRE BUSQUEDAS EN LA BASE DE DATOS
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +48,7 @@ public class VerCursos extends AppCompatActivity {
         this.creador=Boolean.parseBoolean(this.getIntent().getExtras().get(MenuPrincipal.ES_CREADOR).toString());
         this.drawInterface();
 
-
+        DBManager x=((MyApplication)this.getApplication()).getDBManager();
         this.gestionAyuda();
 
         this.mockUpMethod();
@@ -51,7 +59,7 @@ public class VerCursos extends AppCompatActivity {
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                VerCursos.this.goToVerDetalle(i);
                 return true;
             }
         });
@@ -67,6 +75,7 @@ public class VerCursos extends AppCompatActivity {
         }*/
 
         listViewCursos.setAdapter(adapter);
+
     }
 
     private void drawInterface(){
