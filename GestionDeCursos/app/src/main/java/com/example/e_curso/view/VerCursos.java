@@ -104,7 +104,25 @@ public class VerCursos extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        return super.onContextItemSelected(item);
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+
+            case R.id.action_ver_curso:
+                //goToVerDetalle(i);
+                return true;
+
+            case R.id.action_modificar_curso:
+                //goToCrearCurso(i);
+                return true;
+
+            case R.id.action_eliminar_curso:
+                //Opción eliminar curso
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     private void drawInterface(){
@@ -115,6 +133,13 @@ public class VerCursos extends AppCompatActivity {
     }
     private void goToVerDetalle(int i) {
         Intent intent=new Intent(VerCursos.this,VerCursoDetalle.class);
+        //Curso seleccionado=this.cursos.get(i);
+        //intent.putExtra("curso",seleccionado);
+        //this.startActivity(intent);
+    }
+
+    private void goToCrearCurso(int i){
+        Intent intent=new Intent(VerCursos.this,CrearCurso.class);
         //Curso seleccionado=this.cursos.get(i);
         //intent.putExtra("curso",seleccionado);
         //this.startActivity(intent);
