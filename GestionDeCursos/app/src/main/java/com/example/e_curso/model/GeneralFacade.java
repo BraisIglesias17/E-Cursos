@@ -30,6 +30,7 @@ public abstract class GeneralFacade {
         Cursor toret=null;
 
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+nombreTabla,null);
+
         return toret;
     }
 

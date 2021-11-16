@@ -1,32 +1,26 @@
 package com.example.e_curso.view;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_curso.Adapter.CursosListAdapter;
+import com.example.e_curso.Adapter.CursoAdapterCursor;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.model.CursoFacade;
 
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 public class VerCursos extends AppCompatActivity {
 
@@ -46,11 +40,15 @@ public class VerCursos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
 
+        Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(2023,12,1),0.0, 0);
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
 
+        this.cursos.insertaCurso(c);
 
-        SQLiteDatabase jk=db.getReadableDatabase();
+        Cursor cursos=this.cursos.getCursos();
+        CursoAdapterCursor adapter=new CursoAdapterCursor(this,cursos,this.cursos);
+
         this.creador=Boolean.parseBoolean(this.getIntent().getExtras().get(MenuPrincipal.ES_CREADOR).toString());
         this.drawInterface();
 
@@ -59,7 +57,7 @@ public class VerCursos extends AppCompatActivity {
 
         ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
 
-
+        listViewCursos.setAdapter(adapter);
 
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

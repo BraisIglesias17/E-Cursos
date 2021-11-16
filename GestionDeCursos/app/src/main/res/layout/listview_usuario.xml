@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
     android:padding="8sp"
     tools:ignore="MissingDefaultResource">
 
-    <TextView
-        android:id="@+id/tvNombreUsuario1"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ivIconoDivulgador"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.3"
+        android:visibility="gone"
+        app:srcCompat="@drawable/profesor" />
+
+    <TextView
+        android:id="@+id/tvNombreCompletoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Nombre Usuario"
+        android:text="  Nombre Usuario"
         android:textSize="23sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.6"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvApellidosUsuario1"
+            android:id="@+id/tvUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

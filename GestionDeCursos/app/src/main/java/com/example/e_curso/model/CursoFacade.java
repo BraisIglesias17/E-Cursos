@@ -56,6 +56,14 @@ public class CursoFacade extends GeneralFacade{
     public Cursor getCursos(){
             return super.getElements();
     }
+    public Cursor getCursosActivos(){
+
+        Cursor toret=null;
+
+
+
+        return toret;
+    }
 
     /*
     public boolean createCurso(Curso curso){
@@ -91,7 +99,7 @@ public class CursoFacade extends GeneralFacade{
             return toret;
         }
     }*/
-    public boolean insertaCurso(Curso curso, int id_user){
+    public boolean insertaCurso(Curso curso){
 
         return super.createObjectInDB("INSERT INTO " +DBManager.CURSO_TABLE_NAME +
                 "(" +
@@ -109,7 +117,7 @@ public class CursoFacade extends GeneralFacade{
                 ","+
                 DBManager.CURSO_COLUMN_USUARIO_ID +
                 ") VALUES (?,?,?,?,?,?,?)",new Object[]{curso.getNombreCurso(),curso.getDescripcion(),curso.getTematica(),
-                Double.toString(curso.getDuracion()),curso.getFechaDB(),Integer.toString(curso.getMaxAsistentes()),id_user});
+                Double.toString(curso.getDuracion()),curso.getFechaDB(),Integer.toString(curso.getMaxAsistentes()),curso.getCreador()});
 
     }
 

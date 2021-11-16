@@ -109,15 +109,7 @@ public class Curso implements Serializable {
         SimpleDateFormat isoDateFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss", Locale.ROOT );
         isoDateFormat.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
         String strFecha = isoDateFormat.format( this.fecha );
-        String toret="";
-
-        int i=0;
-        char next='x';
-        while (next!=' '){
-            next=strFecha.charAt(i);
-            toret+=next;
-            i++;
-        }
+        String toret=strFecha;
 
         return toret;
 
