@@ -50,7 +50,8 @@
         <activity
             android:name=".view.VerCursos"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
