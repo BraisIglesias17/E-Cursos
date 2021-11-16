@@ -10,10 +10,14 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.e_curso.Adapter.CursosListAdapter;
+import com.example.e_curso.Adapter.UsuariosListAdapter;
 import com.example.e_curso.R;
+import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VerUsuarios extends AppCompatActivity {
 
@@ -28,8 +32,9 @@ public class VerUsuarios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
         setContentView(R.layout.ver_lista_usuarios);
-        ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
+        mockUpMethod();
 
+        ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
 
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -64,4 +69,12 @@ public class VerUsuarios extends AppCompatActivity {
             this.adaptadorUsuario.notifyDataSetChanged();
         }
     }
+
+    private void mockUpMethod(){
+        this.usuarios=new ArrayList<>();
+        this.usuarios.add(new Usuario("PAPA","PEPE","papepe","qwer123", Usuario.Rol.DIVUL,"email@email.es"));
+
+        this.adaptadorUsuario=new UsuariosListAdapter(this,this.usuarios);
+    }
+
 }

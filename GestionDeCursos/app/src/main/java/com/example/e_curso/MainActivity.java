@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 boolean acceder=MainActivity.this.checkLogIn();
-                boolean admin=false;
+                boolean admin=true;
                 if(acceder && !admin){
                     Intent menu_principal=new Intent(MainActivity.this, MenuPrincipal.class);
                     MainActivity.this.goTo(menu_principal,"nombeusuario");
+
 
 
 
