@@ -10,14 +10,10 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_curso.Adapter.CursosListAdapter;
-import com.example.e_curso.Adapter.UsuariosListAdapter;
 import com.example.e_curso.R;
-import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class VerUsuarios extends AppCompatActivity {
 
@@ -42,7 +38,7 @@ public class VerUsuarios extends AppCompatActivity {
                 Intent modificarUsuario = new Intent(VerUsuarios.this, VerUsuarioConcreto.class);
                 Usuario user = (Usuario) VerUsuarios.this.adaptadorUsuario.getItem(i);
 
-                modificarUsuario.putExtra("nombre",user.getNombre());
+                modificarUsuario.putExtra("nombre",user.getUser());
                 modificarUsuario.putExtra("pos", i);
 
                 VerUsuarios.this.startActivityForResult(modificarUsuario, MODIFY_CODE);
@@ -58,8 +54,8 @@ public class VerUsuarios extends AppCompatActivity {
 
             int pos = data.getExtras().getInt("pos");
             Usuario user = new Usuario();
-            user.setNombre(data.getExtras().getString("nombre"));
-            user.setApellido(data.getExtras().getString("apellido"));
+            user.setUser(data.getExtras().getString("nombre"));
+            user.setNombreCompleto(data.getExtras().getString("apellido"));
             user.setEmail(data.getExtras().getString("email"));
             if(data.getExtras().getBoolean("divulgador"))
                 user.setRol(Usuario.Rol.DIVUL);
@@ -71,10 +67,10 @@ public class VerUsuarios extends AppCompatActivity {
     }
 
     private void mockUpMethod(){
-        this.usuarios=new ArrayList<>();
-        this.usuarios.add(new Usuario("PAPA","PEPE","papepe","qwer123", Usuario.Rol.DIVUL,"email@email.es"));
+        //this.usuarios=new ArrayList<>();
+        //this.usuarios.add(new Usuario("PAPA","PEPE","papepe","qwer123", Usuario.Rol.DIVUL,"email@email.es"));
 
-        this.adaptadorUsuario=new UsuariosListAdapter(this,this.usuarios);
+        //this.adaptadorUsuario=new UsuariosListAdapter(this,this.usuarios);
     }
 
 }

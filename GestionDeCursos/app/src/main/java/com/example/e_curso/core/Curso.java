@@ -1,7 +1,10 @@
 package com.example.e_curso.core;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Curso implements Serializable {
 
@@ -11,14 +14,32 @@ public class Curso implements Serializable {
     private int maxAsistentes;
     private Date fecha;
     private double duracion;
+    private int numAsistentes;
+    private int idCreador;
 
-    public Curso(String descripcion, String nombreCurso,String tematica, int maxAsistentes, Date fecha, double duracion) {
+    public Curso(String nombreCurso, String descripcion, String tematica, int numAsistentes, int maxAsistentes, Date fecha, double duracion, int idCreador) {
         this.descripcion = descripcion;
         this.nombreCurso = nombreCurso;
         this.maxAsistentes = maxAsistentes;
         this.fecha = fecha;
         this.duracion = duracion;
         this.tematica = tematica;
+        this.numAsistentes=numAsistentes;
+        this.idCreador=idCreador;
+    }
+
+    public Curso(){
+
+    }
+
+    public int getCreador(){
+        return this.idCreador;
+    }
+    public void setCreador(int usuario){
+        this.idCreador=idCreador;
+    }
+    public void reservarPlaza(){
+        this.numAsistentes++;
     }
 
     public String getTematica() {
@@ -74,5 +95,46 @@ public class Curso implements Serializable {
 
     public void setDuracion(double duracion) {
         this.duracion = duracion;
+    }
+
+    public int getNumAsistentes() {
+        return numAsistentes;
+    }
+
+    public void setAsistentes(int numAsistentes) {
+        this.numAsistentes=numAsistentes;
+    }
+
+    public String getFechaDB(){
+        SimpleDateFormat isoDateFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss", Locale.ROOT );
+        isoDateFormat.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
+        String strFecha = isoDateFormat.format( this.fecha );
+        String toret="";
+
+        int i=0;
+        char next='x';
+        while (next!=' '){
+            next=strFecha.charAt(i);
+            toret+=next;
+            i++;
+        }
+
+        return toret;
+
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "descripcion='" + descripcion + '\'' +
+                ", nombreCurso='" + nombreCurso + '\'' +
+                ", tematica='" + tematica + '\'' +
+                ", maxAsistentes=" + maxAsistentes +
+                ", fecha=" + fecha +
+                ", duracion=" + duracion +
+                ", numAsistentes=" + numAsistentes +
+                '}';
     }
 }

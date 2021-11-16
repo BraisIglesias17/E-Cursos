@@ -1,6 +1,7 @@
 package com.example.e_curso.view;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +16,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.Adapter.CursosListAdapter;
+import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.database.DBManager;
-import com.example.e_curso.general.MyApplication;
+import com.example.e_curso.model.CursoFacade;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,31 +32,33 @@ public class VerCursos extends AppCompatActivity {
 
 
     private static final String MENSAJE_AYUDA_CURSOS = "Manten pulsado sobre un curso para ver las opciones";
-    CursosListAdapter adapter;
-    ArrayList<Curso> cursos;
+
+
     //ControladorCurso
     boolean creador;
-
+    private CursoFacade cursos;
 
     //no es necesario ARRAYLIST
     //TODO CON CURSORES SOBRE BUSQUEDAS EN LA BASE DE DATOS
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
 
+        DBManager db=((MyApplication) this.getApplication()).getDBManager();
+        this.cursos=new CursoFacade(db);
+
+
+        SQLiteDatabase jk=db.getReadableDatabase();
         this.creador=Boolean.parseBoolean(this.getIntent().getExtras().get(MenuPrincipal.ES_CREADOR).toString());
         this.drawInterface();
 
-        DBManager x=((MyApplication)this.getApplication()).getDBManager();
         this.gestionAyuda();
 
-        this.mockUpMethod();
+
         ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
-        listViewCursos.setAdapter(this.adapter);
+
 
 
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -74,7 +79,6 @@ public class VerCursos extends AppCompatActivity {
             btGeneral.setText("Apuntarse");
         }*/
 
-        listViewCursos.setAdapter(adapter);
 
     }
 
@@ -86,9 +90,9 @@ public class VerCursos extends AppCompatActivity {
     }
     private void goToVerDetalle(int i) {
         Intent intent=new Intent(VerCursos.this,VerCursoDetalle.class);
-        Curso seleccionado=this.cursos.get(i);
-        intent.putExtra("curso",seleccionado);
-        this.startActivity(intent);
+        //Curso seleccionado=this.cursos.get(i);
+        //intent.putExtra("curso",seleccionado);
+        //this.startActivity(intent);
     }
 
     private void gestionAyuda() {
@@ -104,13 +108,5 @@ public class VerCursos extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void mockUpMethod(){
-        this.cursos=new ArrayList<>();
-        this.cursos.add(new Curso("It will be fun","Forgery","Security",30,new Date(),2));
-
-        this.adapter=new CursosListAdapter(this,this.cursos);
-
     }
 }
