@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +46,7 @@ public class VerCursos extends AppCompatActivity {
     //no es necesario ARRAYLIST
     //TODO CON CURSORES SOBRE BUSQUEDAS EN LA BASE DE DATOS
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +65,18 @@ public class VerCursos extends AppCompatActivity {
 
         ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
 
+        String[] cursos = {"Curso 1", "Curso 2", "Curso 3", "Curso 4", "Curso 5", "Curso 6", "Curso 7", "Curso 8"};
+        ArrayAdapter<String> adp=new ArrayAdapter<String>(VerCursos.this, android.R.layout.simple_list_item_1, cursos);
+        listViewCursos.setAdapter(adp);
 
 
         listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                VerCursos.this.goToVerDetalle(i);
-                return true;
+
+                registerForContextMenu(listViewCursos);
+                //VerCursos.this.goToVerDetalle(i);
+                return false;
             }
         });
         //ESTA CLASE DEBERA DISPARAR UNA BUSQUEDA SOBRE LA BASE DE DATOS
@@ -79,7 +90,21 @@ public class VerCursos extends AppCompatActivity {
             btGeneral.setText("Apuntarse");
         }*/
 
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        int id=v.getId();
+        MenuInflater inflater=getMenuInflater();
+
+        inflater.inflate(R.menu.menu_contextual_lvcursos, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        return super.onContextItemSelected(item);
     }
 
     private void drawInterface(){

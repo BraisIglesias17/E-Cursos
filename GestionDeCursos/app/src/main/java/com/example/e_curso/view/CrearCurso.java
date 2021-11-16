@@ -27,7 +27,7 @@ public class CrearCurso extends AppCompatActivity{
             TextView descripcion=(TextView)this.findViewById(R.id.tvResumenCursoDetalle);
             TextView fecha=(TextView)this.findViewById(R.id.tvFechaCursoDetalle);
             TextView duracion=(TextView)this.findViewById(R.id.tvDuracionCursoDetalle);
-            TextView numAsistentes=(TextView)this.findViewById(R.id.tvNumMaximoAsistentesDetalle);
+            TextView numAsist=(TextView)this.findViewById(R.id.tvNumMaximoAsistentesDetalle);
 
             EditText txtNombreCurso=(EditText)this.findViewById(R.id.etNombreCurso);
             EditText txtDescripcion=(EditText)this.findViewById(R.id.etResumenCurso);
@@ -36,11 +36,11 @@ public class CrearCurso extends AppCompatActivity{
             EditText txtNumAsist=(EditText)this.findViewById(R.id.etMaxAsistentes);
 
 
-            nombreCurso.setText(c.getNombreCurso());
-            descripcion.setText(c.getDescripcion());
-            duracion.setText((int) c.getDuracion());
-            numAsistentes.setText(c.getMaxAsistentes());
-            fecha.setText(c.getFechaFormato());
+            txtNombreCurso.setText(c.getNombreCurso());
+            txtDescripcion.setText(c.getDescripcion());
+            txtFecha.setText(c.getFechaFormato());
+            txtDuracion.setText((int) c.getDuracion());
+            txtNumAsist.setText(c.getMaxAsistentes());
 
         }
 

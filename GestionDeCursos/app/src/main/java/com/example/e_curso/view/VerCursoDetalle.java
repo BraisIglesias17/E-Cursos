@@ -39,7 +39,7 @@ public class VerCursoDetalle extends AppCompatActivity {
         nombreCurso.setText(c.getNombreCurso());
         descripcion.setText(c.getDescripcion());
         duracion.setText(Double.toString(c.getDuracion()));
-        //numAsistentes.setText(c.getMaxAsistentes());
+        numAsistentes.setText(c.getMaxAsistentes());
         fecha.setText(c.getFechaFormato());
 
 
