@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvResumenCurso"
+                android:id="@+id/tvResumenCursoDetalle"
                 android:layout_width="265dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -96,7 +96,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvDuracionCurso"
+                android:id="@+id/tvDuracionCursoDetalle"
                 android:layout_width="265dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -122,7 +122,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNumMaximoAsistentes"
+                android:id="@+id/tvNumMaximoAsistentesDetalle"
                 android:layout_width="265dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"

@@ -38,7 +38,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
 
-    /*
+
     private void gestionVerCursosApuntados() {
         Button btVerCursos=this.findViewById(R.id.btVerCursosGenerales);
         btVerCursos.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
-    }*/
+    }
     private void gestionVerCursos(Button b, boolean misCursos, boolean ofertados){
         b.setOnClickListener(new View.OnClickListener() {
             @Override
