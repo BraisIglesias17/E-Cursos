@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
                 }else if(acceder && admin){
                     Intent menu_principal_admin=new Intent(MainActivity.this, MenuAdministrador.class);
                     MainActivity.this.goTo(menu_principal_admin,"nombeusuario");

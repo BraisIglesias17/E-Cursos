@@ -112,6 +112,5 @@ public class VerCursos extends AppCompatActivity {
 
         this.adapter=new CursosListAdapter(this,this.cursos);
 
-
     }
 }

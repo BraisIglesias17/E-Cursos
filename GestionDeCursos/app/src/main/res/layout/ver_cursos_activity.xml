@@ -31,13 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/etBuscarCurso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:ems="10"
                 android:hint="Buscar"
                 android:inputType="textPersonName"
@@ -47,8 +48,8 @@
             <Button
                 android:id="@+id/btAddNuevoCurso"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Nuevo curso"
                 android:visibility="visible" />
         </LinearLayout>

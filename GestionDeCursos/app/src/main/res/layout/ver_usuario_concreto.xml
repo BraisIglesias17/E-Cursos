@@ -116,8 +116,15 @@
                 android:id="@+id/btModificarUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="23sp"
-                android:text="Modificar Usuario" />
+                android:text="Modificar Usuario"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btVolverListaUsuarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </LinearLayout>
