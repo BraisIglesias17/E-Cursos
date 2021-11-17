@@ -91,11 +91,11 @@ public class UsuarioFacade extends GeneralFacade{
 
         return super.updateElement(DBManager.USUARIO_COLUMN_NAME+" = ?",valores,new String[]{usuario.getUser()});
     }
-    public Cursor getUsuarioCursorById(int id){
+    public Cursor getUsuarioCursorById(long id){
         return super.getById(id);
     }
 
-    public Usuario getUsuarioById(int id){
+    public Usuario getUsuarioById(long id){
         return UsuarioFacade.readUsuario(super.getById(id));
     }
 

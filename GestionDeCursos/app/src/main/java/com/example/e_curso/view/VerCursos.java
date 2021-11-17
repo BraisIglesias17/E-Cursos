@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.Adapter.CursoAdapterCursor;
+import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
@@ -40,6 +41,7 @@ public class VerCursos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
 
+        this.creador=((MyApplication) this.getApplication()).esAdmin();
         Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(2023,12,1),0.0, 0);
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);

@@ -32,7 +32,7 @@
                 android:textSize="23sp" />
 
             <EditText
-                android:id="@+id/etNombreUsuario"
+                android:id="@+id/etuserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
@@ -61,7 +61,7 @@
                 android:textSize="23sp" />
 
             <EditText
-                android:id="@+id/etApellidosUsuario"
+                android:id="@+id/etNombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"

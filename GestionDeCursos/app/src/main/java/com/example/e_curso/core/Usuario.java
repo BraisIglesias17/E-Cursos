@@ -29,6 +29,7 @@ public class Usuario implements Serializable {
         return this.solicitud;
     }
 
+
     public static enum Rol{
         ADMIN,
         DIVUL,

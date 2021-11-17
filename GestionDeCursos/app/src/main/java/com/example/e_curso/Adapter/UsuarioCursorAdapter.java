@@ -48,10 +48,12 @@ public class UsuarioCursorAdapter extends CursorAdapter {
         nombreUsuario.setText(u.getNombreCompleto());
         user.setText(u.getUser());
 
-
+        ImageView icono=view.findViewById(R.id.ivIconoDivulgador);
         if(u.getRol().toString()== Usuario.Rol.DIVUL.toString()){
-            ImageView icono=view.findViewById(R.id.ivIconoDivulgador);
+
             icono.setVisibility(View.VISIBLE);
+        }else{
+            icono.setVisibility(View.INVISIBLE);
         }
 
     }

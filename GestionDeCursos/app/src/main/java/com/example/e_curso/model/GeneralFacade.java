@@ -87,7 +87,7 @@ public abstract class GeneralFacade {
         return toret;
     }
 
-    public Cursor getById(int id){
+    public Cursor getById(long id){
         Cursor toret=null;
 
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+this.nombreTabla +" WHERE "+DBManager._id+ " == ? ",new String[]{""+id});

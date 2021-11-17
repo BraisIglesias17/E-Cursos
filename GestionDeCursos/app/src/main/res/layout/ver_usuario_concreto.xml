@@ -20,18 +20,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Nombre"
+                android:text="Usuario"
                 android:textSize="23sp" />
 
             <EditText
-                android:id="@+id/etNombreUsuario"
+                android:id="@+id/etuserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:autofillHints="Nombre Completo"
                 android:gravity="center"
+                android:hint="nombre de usuario"
                 android:inputType="text"
-                android:text="Nuevo Nombre"
                 android:textSize="23sp" />
         </LinearLayout>
 
@@ -47,18 +47,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Apellidos"
+                android:text="Nombre completo"
                 android:textSize="23sp" />
 
             <EditText
-                android:id="@+id/etApellidosUsuario"
+                android:id="@+id/etNombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:autofillHints="no"
                 android:gravity="center"
+                android:hint="Nombre completo"
                 android:inputType="text"
-                android:text="Apellidos Nuevos"
                 android:textSize="19sp" />
         </LinearLayout>
 
@@ -84,8 +84,8 @@
                 android:layout_weight="0.3"
                 android:autofillHints="Nombre Completo"
                 android:gravity="center"
+                android:hint="mail"
                 android:inputType="textEmailAddress"
-                android:text="Correo Nuevo"
                 android:textSize="19sp" />
         </LinearLayout>
 

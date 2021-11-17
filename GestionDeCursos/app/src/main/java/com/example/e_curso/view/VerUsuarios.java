@@ -1,33 +1,33 @@
 package com.example.e_curso.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.OnReceiveContentListener;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.Adapter.UsuarioCursorAdapter;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
-import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.model.UsuarioFacade;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class VerUsuarios extends AppCompatActivity {
 
@@ -48,6 +48,8 @@ public class VerUsuarios extends AppCompatActivity {
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
+
+
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
@@ -55,9 +57,10 @@ public class VerUsuarios extends AppCompatActivity {
 
         //gestion de busquedas
         this.setBusqueda();
+        this.registerForContextMenu(listViewUsuarios);
 
 
-        // QUEDA IMPLEMENTAR NAVEGACION A MODIFICAR Y ELIMINAR
+        /* QUEDA IMPLEMENTAR NAVEGACION A MODIFICAR Y ELIMINAR
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,7 +73,53 @@ public class VerUsuarios extends AppCompatActivity {
                 VerUsuarios.this.startActivityForResult(modificarUsuario, MODIFY_CODE);
                 return true;
             }
+        });*/
+    }
+
+
+
+     public void onCreateContextMenu(ContextMenu contxt, View v, ContextMenu.ContextMenuInfo cmi){
+            if(v.getId()==R.id.lvListaUsuarios){
+                this.getMenuInflater().inflate( R.menu.opciones_sobre_usuario_menu, contxt );
+                contxt.setHeaderTitle( R.string.app_name );
+            }
+     }
+
+     @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item){
+         long id=((AdapterView.AdapterContextMenuInfo) item.getMenuInfo() ).id;
+         switch (item.getItemId()){
+             case R.id.itemMenuEliminar:
+                                            this.triggerEliminarUsuario(id);
+                 break;
+             case R.id.itemMenuModificar: this.triggerModificarUsuario(id);
+                 break;
+         }
+         return true;
+    }
+
+    private void triggerEliminarUsuario(long id) {
+        AlertDialog.Builder build=new AlertDialog.Builder(this);
+        build.setTitle("Eliminar usuario");
+        build.setMessage("¿Estas seguro de eliminar este usuario?");
+        build.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
         });
+        build.setNegativeButton("No",null);
+        build.create().show();
+
+    }
+    private void triggerModificarUsuario(long id){
+        Intent modificarUsuario = new Intent(VerUsuarios.this, VerUsuarioConcreto.class);
+        modificarUsuario.putExtra("id",id);
+        Cursor c=this.uf.getById(id);
+        c.moveToFirst();
+        Usuario toSend=UsuarioFacade.readUsuario(c);
+        modificarUsuario.putExtra("usuario",toSend);
+        VerUsuarios.this.startActivity(modificarUsuario);
     }
 
     private void setBusqueda() {
@@ -120,7 +169,7 @@ public class VerUsuarios extends AppCompatActivity {
     }
 
     private Usuario mockUpMethod(){
-       String pass="admin";
+       String pass="user1";
        byte [] digest;
         MessageDigest md = null; //genero un resumen de  la contraseña en claro
         try {
@@ -129,7 +178,7 @@ public class VerUsuarios extends AppCompatActivity {
             e.printStackTrace();
         }
         digest = md.digest(pass.getBytes());
-        Usuario prueba=new Usuario("admin", "admin",digest,"admin@mail.com", Usuario.Rol.ADMIN,0);
+        Usuario prueba=new Usuario("user2", "nomber user2",digest,"user@mail.com", Usuario.Rol.USER,0);
         return prueba;
     }
 

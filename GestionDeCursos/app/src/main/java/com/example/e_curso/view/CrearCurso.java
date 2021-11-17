@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.e_curso.MainActivity;
+import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 
@@ -16,6 +18,7 @@ public class CrearCurso extends AppCompatActivity{
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.crear_modificar_curso);
+            this.creador=((MyApplication) this.getApplication()).esAdmin();
             Curso c=(Curso) this.getIntent().getExtras().get("curso");
 
             this.rellenarDatos(c);

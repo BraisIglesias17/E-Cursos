@@ -201,7 +201,7 @@ public class CursoFacade extends GeneralFacade{
         }
     }
 
-    public Cursor getCursosDePublicador(int id){
+    public Cursor getCursosDePublicador(long id){
         return super.getTablaFiltrada(DBManager.CURSO_COLUMN_USUARIO_ID,id+"");
     }
     private static Date convertDate(String cadena){

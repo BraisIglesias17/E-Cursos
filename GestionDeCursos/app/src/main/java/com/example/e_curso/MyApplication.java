@@ -8,7 +8,7 @@ import com.example.e_curso.database.DBManager;
 public class MyApplication extends Application {
 
     private Usuario logeado;
-    private int id_user_logged;
+    private long id_user_logged;
     private DBManager db;
     @Override
     public void onCreate() {
@@ -16,7 +16,7 @@ public class MyApplication extends Application {
         this.db=new DBManager(this.getApplicationContext());
     }
 
-    public int getId_user_logged(){
+    public long getId_user_logged(){
         return this.id_user_logged;
     }
     public Usuario getUserLogged(){
@@ -38,7 +38,7 @@ public class MyApplication extends Application {
 
         return toret;
     }
-    public void setId_user_logged(int id_user_logged) {
+    public void setId_user_logged(long id_user_logged) {
         this.id_user_logged = id_user_logged;
     }
 

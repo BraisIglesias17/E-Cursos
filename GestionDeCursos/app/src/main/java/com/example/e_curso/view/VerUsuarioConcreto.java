@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.R;
+import com.example.e_curso.core.Usuario;
 
 public class VerUsuarioConcreto extends AppCompatActivity{
     public static final int CODIGO_OK = 0;
@@ -23,13 +25,15 @@ public class VerUsuarioConcreto extends AppCompatActivity{
         final Intent datosUsuario = this.getIntent();
         final Button btModificar = (Button) this.findViewById(R.id.btModificarUsuario);
         final Button btCancelar = (Button) this.findViewById(R.id.btVolverListaUsuarios);
-        final EditText nuevoNombre = (EditText) this.findViewById(R.id.etNombreUsuario);
-        final EditText nuevoApellido = (EditText) this.findViewById(R.id.etApellidosUsuario);
+        final EditText nuevoNombre = (EditText) this.findViewById(R.id.etuserName);
+        final EditText nuevoApellido = (EditText) this.findViewById(R.id.etNombreCompleto);
         final EditText nuevoEmail = (EditText) this.findViewById(R.id.etEmail);
         CheckBox esDivulgador=(CheckBox) this.findViewById(R.id.cbDivulgador);
 
-
-        nuevoNombre.setText(datosUsuario.getExtras().getString("nombre"));
+        long id=datosUsuario.getExtras().getLong("id");
+        Usuario actual=(Usuario) datosUsuario.getSerializableExtra("usuario");
+        this.rellenarPagina(actual);
+        //nuevoNombre.setText(datosUsuario.getExtras().getString("nombre"));
 
         btModificar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,19 +62,21 @@ public class VerUsuarioConcreto extends AppCompatActivity{
 
     }
 
-/*
+
     private void rellenarPagina(Usuario user){
 
-        TextView nombreUsuario=(TextView)this.findViewById(R.id.tvNombreUsuario);
-        TextView apellidoUsuario=(TextView)this.findViewById(R.id.tvApellidosUsuario);
-        TextView emailUsuario=(TextView)this.findViewById(R.id.tvEmail);
+        TextView nombreUsuario=(TextView)this.findViewById(R.id.etuserName);
+        TextView nombreCompletoUsuario=(TextView)this.findViewById(R.id.etNombreCompleto);
+        TextView emailUsuario=(TextView)this.findViewById(R.id.etEmail);
         CheckBox esDivulgador=(CheckBox) this.findViewById(R.id.cbDivulgador);
 
-        nombreUsuario.setText(user.getNombre());
-        apellidoUsuario.setText(user.getApellido());
+        nombreUsuario.setText(user.getUser());
+        nombreCompletoUsuario.setText(user.getNombreCompleto());
         emailUsuario.setText(user.getEmail());
-        esDivulgador.setChecked(user.getRol().toString());
-
+        if(user.getRol() == Usuario.Rol.DIVUL)
+            esDivulgador.setChecked(true);
+        else
+            esDivulgador.setChecked(false);
     }
-*/
+
 }
