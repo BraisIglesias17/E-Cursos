@@ -2,6 +2,7 @@ package com.example.e_curso.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,8 +11,13 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.e_curso.Adapter.UsuarioCursorAdapter;
+import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
+import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
+import com.example.e_curso.database.DBManager;
+import com.example.e_curso.model.UsuarioFacade;
 
 import java.util.ArrayList;
 
@@ -20,9 +26,9 @@ public class VerUsuarios extends AppCompatActivity {
     private final int MODIFY_CODE = 1;
     private final int DELETE_CODE = 2;
 
-
-    private ArrayAdapter<Usuario> adaptadorUsuario;
-    private ArrayList<Usuario> usuarios;
+    private UsuarioFacade uf;
+    private DBManager db;
+    private UsuarioCursorAdapter cursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +37,16 @@ public class VerUsuarios extends AppCompatActivity {
         mockUpMethod();
 
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
+        this.db=((MyApplication) this.getApplication()).getDBManager();
+        this.uf=new UsuarioFacade(this.db);
+        Cursor cursorUsuarios=this.uf.getUsuarios();
+        this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
 
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent modificarUsuario = new Intent(VerUsuarios.this, VerUsuarioConcreto.class);
-                Usuario user = (Usuario) VerUsuarios.this.adaptadorUsuario.getItem(i);
+                Usuario user = null;
 
                 modificarUsuario.putExtra("nombre",user.getUser());
                 modificarUsuario.putExtra("pos", i);
@@ -61,8 +71,7 @@ public class VerUsuarios extends AppCompatActivity {
                 user.setRol(Usuario.Rol.DIVUL);
             else
                 user.setRol(Usuario.Rol.USER);
-            this.usuarios.set(pos, user);
-            this.adaptadorUsuario.notifyDataSetChanged();
+
         }
     }
 

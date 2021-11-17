@@ -7,38 +7,57 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5sp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etBuscarUsuario"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:height="50dp"
-                android:autofillHints="no"
+            <TextView
+                android:id="@+id/tvUsuarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:inputType="text"
-                android:text="Introduzca el nombre del usuario"
-                android:textSize="19sp" />
-
+                android:text="Usuarios"
+                android:textSize="33sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/etBuscarUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ems="10"
+                android:hint="Buscar"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="402dp"
+            android:layout_weight="0.8"
             android:orientation="horizontal">
 
             <ListView
                 android:id="@+id/lvListaUsuarios"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
 
 </RelativeLayout>
+
