@@ -26,6 +26,8 @@ public class DBManager extends SQLiteOpenHelper{
     public static final String USUARIO_COLUMN_ADMIN="ES_ADMIN";
     public static final String USUARIO_COLUMN_PASSWORD="PASSWORD";
     public static final String USUARIO_COLUMN_ROL="ROL";
+    public static final String USUARIO_COLUMN_SOLICITUD="SOLICITUD";
+
     //CONSTANTES PARA CURSO
 
     public static final String CURSO_TABLE_NAME="CURSO";
@@ -70,7 +72,8 @@ public class DBManager extends SQLiteOpenHelper{
                     USUARIO_COLUMN_PASSWORD + " TEXT," +
                     USUARIO_COLUMN_COMPLETE_NAME + " TEXT NOT NULL," +
                     USUARIO_COLUMN_EMAIL + " TEXT NOT NULL," +
-                    USUARIO_COLUMN_ROL + " TEXT NOT NULL" +
+                    USUARIO_COLUMN_ROL + " TEXT NOT NULL," +
+                    USUARIO_COLUMN_SOLICITUD + " INTEGER" +
                     ")");
 
 

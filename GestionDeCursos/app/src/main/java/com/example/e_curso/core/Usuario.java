@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable {
     private String user, pass, nombreCompleto,  email;
+    private int solicitud; //PUEDE TOMAR VALORES 0 (NO HAY SOLICITUD),1(HAY SOLICITUD PENDIENTE)
 
     public void setRol(String string) {
 
@@ -17,6 +18,10 @@ public class Usuario implements Serializable {
         }
     }
 
+    public int getEstadoSolicitud() {
+        return this.solicitud;
+    }
+
     public static enum Rol{
         ADMIN,
         DIVUL,
@@ -27,13 +32,22 @@ public class Usuario implements Serializable {
     public Usuario(){
 
     }
-    public Usuario(String user, String apellido, String pass, String email, Rol rol){
+    public Usuario(String user, String apellido, String pass, String email, Rol rol, int solicitud){
 
         this.nombreCompleto = apellido;
         this.user = user;
         this.pass = pass;
         this.rol = rol;
         this.email = email;
+        this.solicitud=solicitud;
+    }
+
+    public int getSolicitud() {
+        return solicitud;
+    }
+
+    public void setSolicitud(int solicitud) {
+        this.solicitud = solicitud;
     }
 
     public String getUser(){

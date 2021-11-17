@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.OnReceiveContentListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,15 +40,18 @@ public class VerUsuarios extends AppCompatActivity {
         setContentView(R.layout.ver_lista_usuarios);
         mockUpMethod();
 
-        Usuario nuevo=new Usuario("br17", "Brais Iglesias Otero","pass","braiotero17@gmail.com", Usuario.Rol.DIVUL);
+        Usuario nuevo=new Usuario("br17", "Brais Iglesias Otero","pass","braiotero17@gmail.com", Usuario.Rol.DIVUL,0);
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
-        this.uf.insertUsuario(nuevo);
+        nuevo.setNombreCompleto("Brais otero iglesias");
+        this.uf.actualizarUsuario(nuevo);
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
 
+
+        this.setBusqueda();
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -59,6 +66,33 @@ public class VerUsuarios extends AppCompatActivity {
             }
         });
     }
+
+    private void setBusqueda() {
+
+        EditText patron=this.findViewById(R.id.etBuscarUsuario);
+
+        patron.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String filtro=charSequence.toString();
+                Cursor c=VerUsuarios.this.uf.buscarUsuariosPorNombres(filtro);
+                VerUsuarios.this.cursorAdapter.changeCursor(c);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
