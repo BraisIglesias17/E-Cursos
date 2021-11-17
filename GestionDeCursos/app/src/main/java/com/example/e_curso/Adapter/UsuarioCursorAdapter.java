@@ -40,14 +40,14 @@ public class UsuarioCursorAdapter extends CursorAdapter {
 
         TextView nombreUsuario=view.findViewById(R.id.tvNombreCompletoUsuario);
         TextView user=view.findViewById(R.id.tvUser);
-        TextView email=view.findViewById(R.id.tvEmail1);
+
 
         Usuario u=UsuarioFacade.readUsuario(cursor);
 
 
         nombreUsuario.setText(u.getNombreCompleto());
         user.setText(u.getUser());
-        email.setText(u.getEmail());
+
 
         if(u.getRol().toString()== Usuario.Rol.DIVUL.toString()){
             ImageView icono=view.findViewById(R.id.ivIconoDivulgador);

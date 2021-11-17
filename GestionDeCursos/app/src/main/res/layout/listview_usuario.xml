@@ -13,37 +13,26 @@
         android:id="@+id/ivIconoDivulgador"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:layout_weight="0.2"
+        android:visibility="visible"
         app:srcCompat="@drawable/profesor" />
 
     <TextView
         android:id="@+id/tvNombreCompletoUsuario"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_weight="0.6"
         android:gravity="center"
         android:text="  Nombre Usuario"
         android:textSize="23sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Apellidos"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/tvEmail1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Email"
-            android:textSize="20sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:text="user"
+        android:textSize="25sp" />
 
 </LinearLayout>

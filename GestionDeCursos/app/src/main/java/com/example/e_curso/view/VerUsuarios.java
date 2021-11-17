@@ -36,11 +36,14 @@ public class VerUsuarios extends AppCompatActivity {
         setContentView(R.layout.ver_lista_usuarios);
         mockUpMethod();
 
+        Usuario nuevo=new Usuario("br17", "Brais Iglesias Otero","pass","braiotero17@gmail.com", Usuario.Rol.DIVUL);
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
+        this.uf.insertUsuario(nuevo);
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
+        listViewUsuarios.setAdapter(this.cursorAdapter);
 
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
