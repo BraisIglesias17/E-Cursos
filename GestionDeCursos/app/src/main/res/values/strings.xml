@@ -15,4 +15,9 @@
     <string name="verUsuarios">Usuarios</string>
     <string name="verSolicitudes">Solicitudes</string>
 
+    <!--Menu contextual ListView cursos-->
+    <string name="action_ver_curso">Ver curso en detalle</string>
+    <string name="action_modificar_curso">Modificar curso</string>
+    <string name="action_eliminar_curso">Eliminar curso</string>
+
 </resources>
