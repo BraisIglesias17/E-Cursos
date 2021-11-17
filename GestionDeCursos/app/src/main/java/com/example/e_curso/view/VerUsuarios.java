@@ -6,12 +6,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.OnReceiveContentListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +25,8 @@ import com.example.e_curso.core.Usuario;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.model.UsuarioFacade;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class VerUsuarios extends AppCompatActivity {
@@ -38,14 +42,13 @@ public class VerUsuarios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
         setContentView(R.layout.ver_lista_usuarios);
-        mockUpMethod();
-
-        Usuario nuevo=new Usuario("br17", "Brais Iglesias Otero","pass","braiotero17@gmail.com", Usuario.Rol.DIVUL,0);
+        Usuario nuevo=this.mockUpMethod();
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
-        nuevo.setNombreCompleto("Brais otero iglesias");
-        this.uf.actualizarUsuario(nuevo);
+        this.uf.deleteUsuario("prueba");
+        nuevo.setNombreCompleto("Brais iglesias");
+        this.uf.insertUsuario(nuevo);
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
@@ -82,6 +85,7 @@ public class VerUsuarios extends AppCompatActivity {
                 String filtro=charSequence.toString();
                 Cursor c=VerUsuarios.this.uf.buscarUsuariosPorNombres(filtro);
                 VerUsuarios.this.cursorAdapter.changeCursor(c);
+
             }
 
             @Override
@@ -112,11 +116,18 @@ public class VerUsuarios extends AppCompatActivity {
         }
     }
 
-    private void mockUpMethod(){
-        //this.usuarios=new ArrayList<>();
-        //this.usuarios.add(new Usuario("PAPA","PEPE","papepe","qwer123", Usuario.Rol.DIVUL,"email@email.es"));
-
-        //this.adaptadorUsuario=new UsuariosListAdapter(this,this.usuarios);
+    private Usuario mockUpMethod(){
+       String pass="123";
+       byte [] digest;
+        MessageDigest md = null; //genero un resumen de  la contraseña en claro
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        digest = md.digest(pass.getBytes());
+        Usuario prueba=new Usuario("prueba", "Brais Iglesias Otero",digest,"braiotero17@gmail.com", Usuario.Rol.USER,0);
+        return prueba;
     }
 
 }

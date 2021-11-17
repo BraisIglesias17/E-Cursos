@@ -3,7 +3,14 @@ package com.example.e_curso.core;
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
-    private String user, pass, nombreCompleto,  email;
+
+    public static final int RECHAZADO=2;
+    public static final int ACEPTADO=0;
+    public static final int PENDIENTE=1;
+    public static final int NO_SOLCITADA=9;
+
+    private String user, nombreCompleto,  email;
+    private byte [] pass;
     private int solicitud; //PUEDE TOMAR VALORES 0 (NO HAY SOLICITUD),1(HAY SOLICITUD PENDIENTE)
 
     public void setRol(String string) {
@@ -32,7 +39,7 @@ public class Usuario implements Serializable {
     public Usuario(){
 
     }
-    public Usuario(String user, String apellido, String pass, String email, Rol rol, int solicitud){
+    public Usuario(String user, String apellido, byte[] pass, String email, Rol rol, int solicitud){
 
         this.nombreCompleto = apellido;
         this.user = user;
@@ -57,10 +64,10 @@ public class Usuario implements Serializable {
         this.user=user;
     }
 
-    public String getPass(){
+    public byte[] getPass(){
         return pass;
     }
-    public void setPass(String pass){
+    public void setPass(byte[] pass){
         this.pass=pass;
     }
 
