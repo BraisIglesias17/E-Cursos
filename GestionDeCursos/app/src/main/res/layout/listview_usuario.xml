@@ -13,7 +13,7 @@
         android:id="@+id/ivIconoDivulgador"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"
+        android:layout_weight="0.1"
         android:visibility="visible"
         app:srcCompat="@drawable/profesor" />
 
@@ -21,16 +21,16 @@
         android:id="@+id/tvNombreCompletoUsuario"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.6"
+        android:layout_weight="0.7"
         android:gravity="center"
-        android:text="  Nombre Usuario"
+        android:text="Nombre Usuario"
         android:textSize="23sp" />
 
     <TextView
         android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.4"
+        android:layout_weight="0.2"
         android:gravity="center"
         android:text="user"
         android:textSize="25sp" />
