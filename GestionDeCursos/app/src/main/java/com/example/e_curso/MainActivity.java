@@ -45,9 +45,14 @@ public class MainActivity extends AppCompatActivity {
         botonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 boolean acceder=MainActivity.this.checkLogIn();
-                boolean admin=true;
+                if(acceder){
+                    MainActivity.this.admin=((MyApplication)MainActivity.this.getApplication()).esAdmin();
+                }
+
+
+
+
                 if(acceder && !admin){
                     Intent menu_principal=new Intent(MainActivity.this, MenuPrincipal.class);
                     MainActivity.this.goTo(menu_principal,"nombeusuario");

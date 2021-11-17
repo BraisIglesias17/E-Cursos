@@ -42,19 +42,22 @@ public class VerUsuarios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
         setContentView(R.layout.ver_lista_usuarios);
-        Usuario nuevo=this.mockUpMethod();
+
+
+        //Inicializacion del entorno
         ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
-        this.uf.deleteUsuario("prueba");
-        nuevo.setNombreCompleto("Brais iglesias");
-        this.uf.insertUsuario(nuevo);
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
 
 
+        //gestion de busquedas
         this.setBusqueda();
+
+
+        // QUEDA IMPLEMENTAR NAVEGACION A MODIFICAR Y ELIMINAR
         listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -117,7 +120,7 @@ public class VerUsuarios extends AppCompatActivity {
     }
 
     private Usuario mockUpMethod(){
-       String pass="123";
+       String pass="admin";
        byte [] digest;
         MessageDigest md = null; //genero un resumen de  la contraseña en claro
         try {
@@ -126,7 +129,7 @@ public class VerUsuarios extends AppCompatActivity {
             e.printStackTrace();
         }
         digest = md.digest(pass.getBytes());
-        Usuario prueba=new Usuario("prueba", "Brais Iglesias Otero",digest,"braiotero17@gmail.com", Usuario.Rol.USER,0);
+        Usuario prueba=new Usuario("admin", "admin",digest,"admin@mail.com", Usuario.Rol.ADMIN,0);
         return prueba;
     }
 

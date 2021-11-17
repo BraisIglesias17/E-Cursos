@@ -44,8 +44,7 @@ public class SolicitudCursorAdapter extends CursorAdapter {
 
 
         if(u.getEstadoSolicitud()== Usuario.RECHAZADO){
-            ImageView icono=view.findViewById(R.id.ivIconoDivulgador);
-            icono.setVisibility(View.VISIBLE);
+
         }else if(u.getEstadoSolicitud()== Usuario.ACEPTADO){
 
         }else if(u.getEstadoSolicitud()== Usuario.PENDIENTE){

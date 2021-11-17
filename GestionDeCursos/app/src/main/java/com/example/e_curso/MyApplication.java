@@ -27,6 +27,17 @@ public class MyApplication extends Application {
         this.logeado = logeado;
     }
 
+    public boolean esAdmin(){
+        boolean toret=false;
+
+        switch (logeado.getRol()){
+            case ADMIN: toret=true;
+                break;
+            default: toret=false;
+        }
+
+        return toret;
+    }
     public void setId_user_logged(int id_user_logged) {
         this.id_user_logged = id_user_logged;
     }
