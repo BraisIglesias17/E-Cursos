@@ -66,6 +66,8 @@ public class VerCursos extends AppCompatActivity {
                 return true;
             }
         });
+
+        this.triggerCreateCurso();
         //ESTA CLASE DEBERA DISPARAR UNA BUSQUEDA SOBRE LA BASE DE DATOS
         /*
         Button btGeneral= (Button) this.findViewById(R.id.btGuardarCambios);
@@ -78,6 +80,23 @@ public class VerCursos extends AppCompatActivity {
         }*/
 
 
+    }
+
+    private void triggerCreateCurso() {
+
+        Button crearCurso=(Button) this.findViewById(R.id.btAddNuevoCurso);
+
+        crearCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(VerCursos.this,CrearCurso.class);
+                Curso c=null;
+
+                intent.putExtra("curso",c);
+                VerCursos.this.startActivity(intent);
+
+            }
+        });
     }
 
     private void drawInterface(){

@@ -96,6 +96,6 @@
                 <action android:name="android.intent.action.CALL" />
             </intent-filter>
         </activity>
-        
+
     </application>
 </manifest>

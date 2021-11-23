@@ -20,8 +20,8 @@ public class VerCursoDetalle extends AppCompatActivity {
         setContentView(R.layout.ver_curso_detalle_activity);
         Curso c=(Curso) this.getIntent().getExtras().get("curso");
 
-
-        this.rellenarDatos(c);
+        if(c!=null)
+            this.rellenarDatos(c);
     }
 
     private void rellenarDatos(Curso c){
