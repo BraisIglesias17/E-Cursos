@@ -218,4 +218,13 @@ public class CursoFacade extends GeneralFacade{
         return fecha;
     }
 
+    public Cursor getCursosFechasPrueba(){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now')", null);
+
+        return toret;
+    }
+
 }

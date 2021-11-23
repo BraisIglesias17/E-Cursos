@@ -81,7 +81,7 @@ public abstract class GeneralFacade {
     }
     public Cursor getTablaFiltrada(String atributo,String filtro){
         Cursor toret=null;
-
+        filtro='%'+filtro+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+this.nombreTabla +" WHERE "+atributo+ " LIKE ? ",new String[]{filtro});
 
         return toret;

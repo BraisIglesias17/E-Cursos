@@ -42,13 +42,18 @@ public class VerCursos extends AppCompatActivity {
         setContentView(R.layout.ver_cursos_activity);
 
         this.creador=((MyApplication) this.getApplication()).esCreador();
-        Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(2023,12,1),0.0, 0);
+        Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(121,0,1),0.0, 0);
+        Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
+
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
 
         this.cursos.insertaCurso(c);
+        this.cursos.insertaCurso(c2);
 
-        Cursor cursos=this.cursos.getCursos();
+        //Cursor cursos=this.cursos.getCursos();
+        Cursor cursos=this.cursos.getCursosFechasPrueba();
+
         CursoAdapterCursor adapter=new CursoAdapterCursor(this,cursos,this.cursos);
         this.drawInterface();
 
@@ -126,4 +131,6 @@ public class VerCursos extends AppCompatActivity {
             }
         });
     }
+
+
 }

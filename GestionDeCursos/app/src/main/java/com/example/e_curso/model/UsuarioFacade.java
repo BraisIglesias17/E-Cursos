@@ -103,10 +103,10 @@ public class UsuarioFacade extends GeneralFacade{
         return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_NAME,user);
     }
 
-    //este metodo es para buscar un usuario ya se por nombre de usuario o de pila
+    //este metodo es para buscar un usuario ya sea por nombre de usuario o de pila
     public Cursor buscarUsuariosPorNombres(String nombre){
         Cursor toret=null;
-
+        nombre='%'+nombre+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_TABLE_NAME +" WHERE "+DBManager.USUARIO_COLUMN_NAME+ " LIKE ? OR "+DBManager.USUARIO_COLUMN_COMPLETE_NAME+" LIKE ?",new String[]{nombre,nombre});
 
         return toret;

@@ -39,7 +39,7 @@ public class DBManager extends SQLiteOpenHelper{
     public static final String CURSO_COLUMN_ASIST="ASIST";
     public static final String CURSO_COLUMN_FECHA="FECHA_CURSO";
     public static final String CURSO_COLUMN_DURACION="DURACION_CURSO";
-    public static final String CURSO_COLUMN_USUARIO_ID=USUARIO_COLUMN_ID;
+
 
 
 
@@ -49,6 +49,7 @@ public class DBManager extends SQLiteOpenHelper{
     public static final String USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO="_id_USUARIO";
     public static final String USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO="_id_CURSO";
 
+    public static final String CURSO_COLUMN_USUARIO_ID=USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO;
     public DBManager(@Nullable Context context){
         super(context,DB_NAME,null,DB_VERSION);
     }
