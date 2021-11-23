@@ -41,7 +41,7 @@ public class VerCursos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
 
-        this.creador=((MyApplication) this.getApplication()).esAdmin();
+        this.creador=((MyApplication) this.getApplication()).esCreador();
         Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(2023,12,1),0.0, 0);
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
@@ -50,8 +50,6 @@ public class VerCursos extends AppCompatActivity {
 
         Cursor cursos=this.cursos.getCursos();
         CursoAdapterCursor adapter=new CursoAdapterCursor(this,cursos,this.cursos);
-
-        this.creador=Boolean.parseBoolean(this.getIntent().getExtras().get(MenuPrincipal.ES_CREADOR).toString());
         this.drawInterface();
 
         this.gestionAyuda();
