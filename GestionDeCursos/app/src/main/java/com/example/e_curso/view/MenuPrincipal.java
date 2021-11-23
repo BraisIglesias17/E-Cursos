@@ -13,14 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
+import com.example.e_curso.general.General;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    public static String CURSOS_APUNTADOS="misCursos";
-    public static String CURSOS_OFERTADOS="misCursosOfertados";
-    public static String ES_CREADOR="esCreador";
+    public static String CURSOS_ACCESO="cursosAccedidos";
+
 
     boolean creador=false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +31,15 @@ public class MenuPrincipal extends AppCompatActivity {
 
         //UPDATE
         Button btVerCursos=this.findViewById(R.id.btVerCursosGenerales);
-        this.gestionVerCursos(btVerCursos,false,false);
+        this.gestionVerCursosGenerales();
         Button btVerMisCursos=this.findViewById(R.id.btVerCursosApuntados);
-        this.gestionVerCursos(btVerMisCursos,true,false);
+        this.gestionVerCursosApuntados();
         Button btVerCursosPublicados=this.findViewById(R.id.btVerCursosPublicados);
-        this.gestionVerCursos(btVerCursosPublicados,false,true);
+        this.gestionVerCursosOfertados();
 
 
 
-        //ESTABLECER SI ES UN CREADOR CON UNA SHAREDPREFERENCE
+
 
     }
 
@@ -49,8 +51,8 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,true);
-                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR, MenuPrincipal.this.creador);
+                verMisCursos.putExtra(MenuPrincipal.CURSOS_ACCESO,General.Acceso.APUNTADOS.toString());
+
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
@@ -63,8 +65,8 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,false);
-                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR,MenuPrincipal.this.creador);
+                verMisCursos.putExtra(MenuPrincipal.CURSOS_ACCESO,General.Acceso.GENERALES.toString());
+
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
@@ -76,25 +78,22 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,false);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,false);
-                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR,MenuPrincipal.this.creador);
+                verMisCursos.putExtra(MenuPrincipal.CURSOS_ACCESO,General.Acceso.OFERTADOS.toString());
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
     }
-    private void gestionVerCursos(Button b, boolean misCursos, boolean ofertados){
+    /*private void gestionVerCursos(Button b, boolean misCursos, boolean ofertados){
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,misCursos);
-                verMisCursos.putExtra(MenuPrincipal.CURSOS_APUNTADOS,ofertados);
-                verMisCursos.putExtra(MenuPrincipal.ES_CREADOR,MenuPrincipal.this.creador);
+
+
                 MenuPrincipal.this.startActivity(verMisCursos);
             }
         });
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

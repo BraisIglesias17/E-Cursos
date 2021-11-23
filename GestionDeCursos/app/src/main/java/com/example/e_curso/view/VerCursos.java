@@ -19,6 +19,7 @@ import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.database.DBManager;
+import com.example.e_curso.general.General;
 import com.example.e_curso.model.CursoFacade;
 
 import java.util.Date;
@@ -33,31 +34,37 @@ public class VerCursos extends AppCompatActivity {
     boolean creador;
     private CursoFacade cursos;
 
-    //no es necesario ARRAYLIST
-    //TODO CON CURSORES SOBRE BUSQUEDAS EN LA BASE DE DATOS
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
 
         this.creador=((MyApplication) this.getApplication()).esCreador();
-        Curso c=new Curso("Prueba","Descripcion de prueba","tematica", 0, 30,new Date(121,0,1),0.0, 0);
+        Curso c=new Curso("Prueba","Creado por USER1","tematica", 0, 30,new Date(123,0,1),0.0, 6);
         Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
-
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
+        this.drawInterface();
+        this.gestionAyuda();
+        this.triggerCreateCurso();
 
-        this.cursos.insertaCurso(c);
-        this.cursos.insertaCurso(c2);
+        Intent intent=this.getIntent();
+        String caso=this.getIntent().getStringExtra(MenuPrincipal.CURSOS_ACCESO);
 
-        //Cursor cursos=this.cursos.getCursos();
         Cursor cursos=this.cursos.getCursosFechasPrueba();
+        switch (caso){
+            case "GENERALES": cursos=this.cursos.getCursosFechasPrueba();
+                break;
+            case "APUNTADOS": //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
+                break;
+            case "OFERTADOS": cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
+                break;
+        }
+
+
 
         CursoAdapterCursor adapter=new CursoAdapterCursor(this,cursos,this.cursos);
-        this.drawInterface();
 
-        this.gestionAyuda();
 
 
         ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
@@ -71,18 +78,6 @@ public class VerCursos extends AppCompatActivity {
                 return true;
             }
         });
-
-        this.triggerCreateCurso();
-        //ESTA CLASE DEBERA DISPARAR UNA BUSQUEDA SOBRE LA BASE DE DATOS
-        /*
-        Button btGeneral= (Button) this.findViewById(R.id.btGuardarCambios);
-        if(creador){
-            //SE BUSCA LOS CREADOS POR EL USUARIO
-            btGeneral.setText("Guardar cambios");
-        }else{
-            //SE BUSCAN TODOS
-            btGeneral.setText("Apuntarse");
-        }*/
 
 
     }

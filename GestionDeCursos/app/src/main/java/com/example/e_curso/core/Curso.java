@@ -15,9 +15,9 @@ public class Curso implements Serializable {
     private Date fecha;
     private double duracion;
     private int numAsistentes;
-    private int idCreador;
+    private long idCreador;
 
-    public Curso(String nombreCurso, String descripcion, String tematica, int numAsistentes, int maxAsistentes, Date fecha, double duracion, int idCreador) {
+    public Curso(String nombreCurso, String descripcion, String tematica, int numAsistentes, int maxAsistentes, Date fecha, double duracion, long idCreador) {
         this.descripcion = descripcion;
         this.nombreCurso = nombreCurso;
         this.maxAsistentes = maxAsistentes;
@@ -32,7 +32,7 @@ public class Curso implements Serializable {
 
     }
 
-    public int getCreador(){
+    public long getCreador(){
         return this.idCreador;
     }
     public void setCreador(int usuario){

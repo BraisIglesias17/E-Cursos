@@ -136,8 +136,8 @@ public class CursoFacade extends GeneralFacade{
 
         return toret;
     }*/
-    public boolean deleteCurso(Curso nombre){
-        return super.deleteElement(DBManager.CURSO_COLUMN_NAME,nombre);
+    public boolean deleteCurso(Curso curso){
+        return super.deleteElement(DBManager.CURSO_COLUMN_NAME,curso.getNombreCurso());
     }
     /*public boolean updateCurso(Curso c){
         SQLiteDatabase db=this.dbManager.getWritableDatabase();
