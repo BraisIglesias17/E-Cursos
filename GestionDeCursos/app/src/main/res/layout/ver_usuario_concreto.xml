@@ -59,6 +59,7 @@
                 android:gravity="center"
                 android:hint="Nombre completo"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:textSize="19sp" />
         </LinearLayout>
 
@@ -86,6 +87,7 @@
                 android:gravity="center"
                 android:hint="mail"
                 android:inputType="textEmailAddress"
+                android:minHeight="48dp"
                 android:textSize="19sp" />
         </LinearLayout>
 
@@ -112,19 +114,33 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btModificarUsuario"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modificar Usuario"
-                android:textSize="15sp" />
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btVolverListaUsuarios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:textSize="15sp" />
+                <Button
+                    android:id="@+id/btModificarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modificar Usuario"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btVolverListaUsuarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelar"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
