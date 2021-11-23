@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         byte[] passwordEncriptada=this.encriptarPassword(password.getText().toString());
 
         Cursor usuario=this.usuarioDB.logIn(user.getText().toString());
+        user.getText().clear();
+        password.getText().clear();
 
         if(usuario!=null){
             usuario.moveToFirst();

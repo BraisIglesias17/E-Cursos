@@ -40,7 +40,7 @@ public class VerUsuarioConcreto extends AppCompatActivity{
             public void onClick(View view) {
                 //intent de datos a enviar
                 Intent datosModificados = new Intent();
-                //rellenar el intent
+                //rellenar el intent //HACERLO CON UN OBJETO USUARIO SERIALIZABLE
                 datosModificados.putExtra("nombre", nuevoNombre.getText().toString());
                 datosModificados.putExtra("apellido",nuevoApellido.getText().toString());
                 datosModificados.putExtra("email", nuevoEmail.getText().toString());

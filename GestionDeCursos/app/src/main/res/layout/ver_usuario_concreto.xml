@@ -124,7 +124,7 @@
                     android:id="@+id/btModificarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Modificar Usuario"
+                    android:text="Guardar cambios"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -138,7 +138,7 @@
                     android:id="@+id/btVolverListaUsuarios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
+                    android:text="ELIMINAR"
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
