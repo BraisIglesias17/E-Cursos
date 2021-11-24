@@ -226,12 +226,38 @@ public class CursoFacade extends GeneralFacade{
 
         return toret;
     }
+    public Cursor getCursosFechasPruebaDivulgador(String id){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{id});
+
+        return toret;
+    }
 
     public Cursor getCursosFiltradosConFecha(String atributo,String tematica){
         Cursor toret=null;
 
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
                 +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ?", new String[]{atributo,tematica});
+
+        return toret;
+    }
+
+    public Cursor getCursosFiltradosConFechaDivulgador(String atributo,String tematica,long id){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{atributo,tematica,Long.toString(id)});
+
+        return toret;
+    }
+
+    public Cursor getCursosFiltradosDivulgador(String atributo,String tematica,String id){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+atributo+" LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{tematica,id});
 
         return toret;
     }

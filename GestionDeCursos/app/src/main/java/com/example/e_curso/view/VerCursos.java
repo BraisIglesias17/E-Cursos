@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +46,8 @@ public class VerCursos extends AppCompatActivity {
     private CursoFacade cursos;
     private CursoAdapterCursor adapterCursos;
 
+    private String caso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,16 +62,21 @@ public class VerCursos extends AppCompatActivity {
         this.gestionAyuda();
         this.triggerCreateCurso();
 
+
+
+
+
         Intent intent=this.getIntent();
-        String caso=this.getIntent().getStringExtra(MenuPrincipal.CURSOS_ACCESO);
+        this.caso=this.getIntent().getStringExtra(MenuPrincipal.CURSOS_ACCESO);
 
         Cursor cursos=this.cursos.getCursosFechasPrueba();
-        switch (caso){
-            case "GENERALES": cursos=this.cursos.getCursosFechasPrueba();
+        TextView titulo=this.findViewById(R.id.tvVerCursos);
+        switch (this.caso){
+            case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba();
                 break;
-            case "APUNTADOS": //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
+            case "APUNTADOS": titulo.setText("Mis Cursos"); //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
                 break;
-            case "OFERTADOS": cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
+            case "OFERTADOS": titulo.setText("Mis cursos publicados");  cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
                 break;
         }
 
@@ -170,14 +178,28 @@ public class VerCursos extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String filtro=charSequence.toString();
-                if(filtro==""){
-                    Cursor c=VerCursos.this.cursos.getCursosFechasPrueba();
-                    VerCursos.this.adapterCursos.changeCursor(c);
-                }else{
-                    Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_NAME,filtro);
-                    VerCursos.this.adapterCursos.changeCursor(c);
+                switch (VerCursos.this.caso){
+                    case "GENERALES": if(filtro==""){
+                                            Cursor c=VerCursos.this.cursos.getCursosFechasPrueba();
+                                            VerCursos.this.adapterCursos.changeCursor(c);
+                                    }else{
+                                             Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_NAME,filtro);
+                                                VerCursos.this.adapterCursos.changeCursor(c);
+                                    }
+                        break;
+                    case "APUNTADOS": //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
+                        break;
+                    case "OFERTADOS":
+                                        Long id=((MyApplication)VerCursos.this.getApplication()).getId_user_logged();
+                                        if(filtro==""){
+                                            Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(id));
+                                            VerCursos.this.adapterCursos.changeCursor(c);
+                                        }else{
+                                            Cursor c=VerCursos.this.cursos.getCursosFiltradosDivulgador(DBManager.CURSO_COLUMN_NAME,filtro,Long.toString(id));
+                                            VerCursos.this.adapterCursos.changeCursor(c);
+                                        }
+                        break;
                 }
-
 
             }
 

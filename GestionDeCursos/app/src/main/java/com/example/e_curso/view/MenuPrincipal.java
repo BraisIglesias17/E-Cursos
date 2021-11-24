@@ -46,16 +46,11 @@ public class MenuPrincipal extends AppCompatActivity {
             cursosPublicados.setVisibility(View.GONE);
         }
 
-
-
-
-
-
     }
 
 
     private void gestionVerCursosApuntados() {
-        Button btVerCursos=this.findViewById(R.id.btVerCursosGenerales);
+        Button btVerCursos=this.findViewById(R.id.btVerCursosApuntados);
         btVerCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +65,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void gestionVerCursosGenerales() {
-        Button btVerMisCursos=this.findViewById(R.id.btVerCursosApuntados);
+        Button btVerMisCursos=this.findViewById(R.id.btVerCursosGenerales);
         btVerMisCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
