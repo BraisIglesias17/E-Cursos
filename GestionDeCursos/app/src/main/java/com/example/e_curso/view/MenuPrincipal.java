@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,13 +30,22 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal_usuario_activity);
 
+        this.creador=((MyApplication)this.getApplication()).esCreador();
         //UPDATE
         Button btVerCursos=this.findViewById(R.id.btVerCursosGenerales);
         this.gestionVerCursosGenerales();
         Button btVerMisCursos=this.findViewById(R.id.btVerCursosApuntados);
         this.gestionVerCursosApuntados();
-        Button btVerCursosPublicados=this.findViewById(R.id.btVerCursosPublicados);
-        this.gestionVerCursosOfertados();
+
+
+        LinearLayout cursosPublicados=this.findViewById(R.id.linearLayoutCursosPublicados);
+        if(this.creador){
+            Button btVerCursosPublicados=this.findViewById(R.id.btVerCursosPublicados);
+            this.gestionVerCursosOfertados();
+        }else{
+            cursosPublicados.setVisibility(View.GONE);
+        }
+
 
 
 

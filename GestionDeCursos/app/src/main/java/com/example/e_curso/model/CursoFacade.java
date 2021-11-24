@@ -227,4 +227,13 @@ public class CursoFacade extends GeneralFacade{
         return toret;
     }
 
+    public Cursor getCursosFiltradosConFecha(String atributo,String tematica){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ?", new String[]{atributo,tematica});
+
+        return toret;
+    }
+
 }

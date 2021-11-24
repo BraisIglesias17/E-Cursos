@@ -18,6 +18,7 @@
     <string name="crearCurso">Crear</string>
     <string name="nuevoCurso">Nuevo curso</string>
     <string name="lbTematica">Tematica</string>
+    <string name="lblFiltroPorFecha">Mostrar cursos pasados</string>
     <!--Menu contextual ListView cursos-->
     <string name="action_ver_curso">Ver curso en detalle</string>
     <string name="action_modificar_curso">Modificar curso</string>

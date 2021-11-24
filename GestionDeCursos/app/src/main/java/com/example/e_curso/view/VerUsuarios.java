@@ -49,7 +49,7 @@ public class VerUsuarios extends AppCompatActivity {
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
 
-
+        this.uf.insertUsuario(this.mockUpMethod());
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
@@ -57,6 +57,9 @@ public class VerUsuarios extends AppCompatActivity {
 
         //gestion de busquedas
         this.setBusqueda();
+
+
+
         this.registerForContextMenu(listViewUsuarios);
 
 
@@ -169,7 +172,7 @@ public class VerUsuarios extends AppCompatActivity {
     }
 
     private Usuario mockUpMethod(){
-       String pass="user1";
+       String pass="user3";
        byte [] digest;
         MessageDigest md = null; //genero un resumen de  la contraseña en claro
         try {
@@ -178,7 +181,7 @@ public class VerUsuarios extends AppCompatActivity {
             e.printStackTrace();
         }
         digest = md.digest(pass.getBytes());
-        Usuario prueba=new Usuario("user2", "nomber user2",digest,"user@mail.com", Usuario.Rol.USER,0);
+        Usuario prueba=new Usuario("user3", "usuario no divulgador",digest,"user@mail.com", Usuario.Rol.USER,0);
         return prueba;
     }
 

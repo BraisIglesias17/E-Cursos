@@ -1,14 +1,24 @@
 package com.example.e_curso.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +41,9 @@ public class VerCursos extends AppCompatActivity {
 
 
     //ControladorCurso
-    boolean creador;
+    private boolean creador;
     private CursoFacade cursos;
+    private CursoAdapterCursor adapterCursos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,23 +74,118 @@ public class VerCursos extends AppCompatActivity {
 
 
 
-        CursoAdapterCursor adapter=new CursoAdapterCursor(this,cursos,this.cursos);
+        this.adapterCursos=new CursoAdapterCursor(this,cursos,this.cursos);
 
 
+        //gestion de busquedas
+        this.setBusqueda();
 
-        ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
-
-        listViewCursos.setAdapter(adapter);
-
-        listViewCursos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        //filtro
+        Button btFiltrar=this.findViewById(R.id.btFiltrarCursos);
+        btFiltrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                VerCursos.this.goToVerDetalle(i);
-                return true;
+            public void onClick(View view) {
+                VerCursos.this.setFiltro();
             }
         });
 
 
+        ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
+
+        listViewCursos.setAdapter(adapterCursos);
+
+        listViewCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                VerCursos.this.goToVerDetalle(i);
+            }
+        });
+
+
+
+    }
+
+    private Spinner crearSpinner() {
+        Spinner spinner = new Spinner(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.tematicas_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        /*spinner.setGravity(Gravity.CENTER);
+        spinner.setBackgroundColor(0xBA68C8);*/
+        spinner.setAdapter(adapter);
+        return spinner;
+
+    }
+    private void rellenarSpinner(Spinner spinner) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.tematicas_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        /*spinner.setGravity(Gravity.CENTER);
+        spinner.setBackgroundColor(0xBA68C8);*/
+        spinner.setAdapter(adapter);
+    }
+
+    private void setFiltro() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Filtro");
+        builder.setMessage("Selecciona una tematica");
+
+        View vista=View.inflate(this,R.layout.filtro_cursos_layour,null);
+        Spinner spinner1=vista.findViewById(R.id.spinnerFiltroCursos);
+        this.rellenarSpinner(spinner1);
+        CheckBox cbFiltroFecha=vista.findViewById(R.id.cbFiltroCursos);
+
+
+        builder.setView(vista);
+        builder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String filtro=(String) spinner1.getSelectedItem();
+                if(filtro.equals("OTRO")){
+                    filtro="%";
+                }
+                Cursor c=null;
+                if(cbFiltroFecha.isChecked()){
+                    c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_TEMATICA,filtro);
+                }else{
+                    c=VerCursos.this.cursos.getCursosFiltradosConFecha(DBManager.CURSO_COLUMN_TEMATICA,filtro);
+                }
+
+                VerCursos.this.adapterCursos.changeCursor(c);
+            }
+        });
+        builder.setNegativeButton("Cancelar", null);
+        builder.create().show();
+    }
+
+    private void setBusqueda() {
+        EditText patron=this.findViewById(R.id.etBuscarCurso);
+
+        patron.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String filtro=charSequence.toString();
+                if(filtro==""){
+                    Cursor c=VerCursos.this.cursos.getCursosFechasPrueba();
+                    VerCursos.this.adapterCursos.changeCursor(c);
+                }else{
+                    Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_NAME,filtro);
+                    VerCursos.this.adapterCursos.changeCursor(c);
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     private void triggerCreateCurso() {
@@ -126,6 +232,4 @@ public class VerCursos extends AppCompatActivity {
             }
         });
     }
-
-
 }

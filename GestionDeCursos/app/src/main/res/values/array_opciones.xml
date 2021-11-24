@@ -6,5 +6,6 @@
         <item>DEPORTE</item>
         <item>MEDITACION</item>
         <item>ECONOMIA</item>
+        <item>OTRO</item>
     </string-array>
 </resources>
