@@ -33,8 +33,10 @@ public class AsistirFacade extends  GeneralFacade{
     public Cursor getCursosApuntados(long userID){
         Cursor toret=null;
 
-        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME +" NATURAL JOIN "+DBManager.CURSO_TABLE_NAME+" WHERE "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" == ? ",new String[]{Long.toString(userID)});
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME +","+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME+"."+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" == ? AND "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == "+DBManager.CURSO_COLUMN_ID,new String[]{Long.toString(userID)});
 
+        //SELECT * FROM USUARIO_ASISTE_CURSO,CURSO  WHERE USUARIO_ASISTE_CURSO._id_USUARIO == 8 AND USUARIO_ASISTE_CURSO._id_CURSO=CURSO._id
         return toret;
     }
     public boolean eliminarParticipacion(long userID,long cursoID){

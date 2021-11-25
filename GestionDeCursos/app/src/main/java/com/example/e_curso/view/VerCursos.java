@@ -31,6 +31,7 @@ import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.general.General;
+import com.example.e_curso.model.AsistirFacade;
 import com.example.e_curso.model.CursoFacade;
 
 import java.util.Date;
@@ -74,7 +75,9 @@ public class VerCursos extends AppCompatActivity {
         switch (this.caso){
             case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba();
                 break;
-            case "APUNTADOS": titulo.setText("Mis Cursos"); //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
+            case "APUNTADOS": titulo.setText("Mis Cursos");
+                AsistirFacade af=new AsistirFacade(((MyApplication) this.getApplication()).getDBManager());
+                cursos=af.getCursosApuntados(((MyApplication) this.getApplication()).getId_user_logged());
                 break;
             case "OFERTADOS": titulo.setText("Mis cursos publicados");  cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
                 break;
