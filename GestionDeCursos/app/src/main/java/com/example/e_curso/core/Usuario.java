@@ -88,7 +88,7 @@ public class Usuario implements Serializable {
     }
 
     public Rol getRol() {
-        return rol;
+        return this.rol;
     }
     public void setRol(Rol rol) {
         this.rol = rol;

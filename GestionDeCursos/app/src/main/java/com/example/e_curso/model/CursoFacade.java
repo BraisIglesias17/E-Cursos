@@ -46,6 +46,13 @@ public class CursoFacade extends GeneralFacade{
 
         return toret;
     }
+    @SuppressLint("Range")
+    public static long getID(Cursor curso) {
+        long toret;
+
+        toret=curso.getLong(curso.getColumnIndex(DBManager.CURSO_COLUMN_ID));
+        return toret;
+    }
 
     /*public Cursor getCursos(){
         Cursor toret=null;

@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         if(usuario!=null){
             usuario.moveToFirst();
             Usuario actual=UsuarioFacade.readUsuario(usuario);
-            int id=UsuarioFacade.getID(usuario);
+            long id=UsuarioFacade.getID(usuario);
             if(Arrays.equals(actual.getPass(),passwordEncriptada)){
                 toret=true;
                 MyApplication app=(MyApplication) this.getApplication();

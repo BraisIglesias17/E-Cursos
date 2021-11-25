@@ -105,7 +105,7 @@ public class VerCursos extends AppCompatActivity {
         listViewCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                VerCursos.this.goToVerDetalle(i);
+                VerCursos.this.goToVerDetalleApuntarse(l);
             }
         });
 
@@ -233,11 +233,16 @@ public class VerCursos extends AppCompatActivity {
             btAdd.setVisibility(Button.GONE);
         }
     }
-    private void goToVerDetalle(int i) {
-        Intent intent=new Intent(VerCursos.this,VerCursoDetalle.class);
-        //Curso seleccionado=this.cursos.get(i);
-        //intent.putExtra("curso",seleccionado);
-        //this.startActivity(intent);
+    private void goToVerDetalleApuntarse(long cursoID) {
+        Intent intent=new Intent(this,VerCursoDetalle.class);
+        Cursor c=this.cursos.getById(cursoID);
+        c.moveToFirst();
+        Curso seleccionado=CursoFacade.readCurso(c);
+        long id=CursoFacade.getID(c);
+        intent.putExtra("curso",seleccionado);
+        intent.putExtra("apuntarse",true);
+        intent.putExtra("idCurso",id);
+        this.startActivity(intent);
     }
 
     private void gestionAyuda() {

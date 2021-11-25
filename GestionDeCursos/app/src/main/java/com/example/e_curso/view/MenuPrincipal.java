@@ -15,6 +15,7 @@ import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.general.General;
+import com.example.e_curso.model.AsistirFacade;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -45,6 +46,9 @@ public class MenuPrincipal extends AppCompatActivity {
         }else{
             cursosPublicados.setVisibility(View.GONE);
         }
+
+        AsistirFacade af=new AsistirFacade(((MyApplication)this.getApplication()).getDBManager());
+        af.eliminarParticipacion(6,22);
 
     }
 

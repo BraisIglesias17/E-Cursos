@@ -34,10 +34,10 @@ public class UsuarioFacade extends GeneralFacade{
     }
 
     @SuppressLint("Range")
-    public static int getID(Cursor usuario) {
-        int toret;
+    public static long getID(Cursor usuario) {
+        long toret;
 
-        toret=usuario.getInt(usuario.getColumnIndex(DBManager.USUARIO_COLUMN_ID));
+        toret=usuario.getLong(usuario.getColumnIndex(DBManager.USUARIO_COLUMN_ID));
         return toret;
     }
 
