@@ -24,22 +24,25 @@ public class VerCursoDetalle extends AppCompatActivity {
 
     private long idCursoActual;
     private Curso actual;
+    private boolean apuntarse;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_curso_detalle_activity);
         Curso c=(Curso) this.getIntent().getExtras().get("curso");
         this.idCursoActual=this.getIntent().getExtras().getLong("idCurso");
         this.actual=c;
-
+        this.apuntarse=this.getIntent().getExtras().getBoolean("apuntarse");
         if(c!=null)
             this.rellenarDatos(c);
+
 
         this.configuracionBoton();
     }
 
     private void configuracionBoton() {
         Button apuntarse=this.findViewById(R.id.btApuntarse);
-        if(this.actual.getNumAsistentes()==this.actual.getMaxAsistentes()){
+        if(this.actual.getNumAsistentes()==this.actual.getMaxAsistentes() || this.apuntarse==false){
                 apuntarse.setVisibility(View.INVISIBLE);
         }else{
             apuntarse.setOnClickListener(new View.OnClickListener() {

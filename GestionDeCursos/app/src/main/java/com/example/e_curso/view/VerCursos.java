@@ -46,7 +46,7 @@ public class VerCursos extends AppCompatActivity {
     private boolean creador;
     private CursoFacade cursos;
     private CursoAdapterCursor adapterCursos;
-
+    private boolean vistaParaApuntarse=false;
     private String caso;
 
     @Override
@@ -73,13 +73,15 @@ public class VerCursos extends AppCompatActivity {
         Cursor cursos=this.cursos.getCursosFechasPrueba();
         TextView titulo=this.findViewById(R.id.tvVerCursos);
         switch (this.caso){
-            case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba();
+            case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba(); this.vistaParaApuntarse=true;
                 break;
             case "APUNTADOS": titulo.setText("Mis Cursos");
                 AsistirFacade af=new AsistirFacade(((MyApplication) this.getApplication()).getDBManager());
                 cursos=af.getCursosApuntados(((MyApplication) this.getApplication()).getId_user_logged());
+                this.vistaParaApuntarse=false;
                 break;
             case "OFERTADOS": titulo.setText("Mis cursos publicados");  cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
+                this.vistaParaApuntarse=false;
                 break;
         }
 
@@ -243,7 +245,7 @@ public class VerCursos extends AppCompatActivity {
         Curso seleccionado=CursoFacade.readCurso(c);
         long id=CursoFacade.getID(c);
         intent.putExtra("curso",seleccionado);
-        intent.putExtra("apuntarse",true);
+        intent.putExtra("apuntarse",this.vistaParaApuntarse);
         intent.putExtra("idCurso",id);
         this.startActivity(intent);
     }
