@@ -28,8 +28,8 @@ public class CrearCurso extends AppCompatActivity{
             this.creador=((MyApplication) this.getApplication()).esCreador();
 
             Curso c=(Curso) this.getIntent().getExtras().get("curso");
+            long id=this.getIntent().getExtras().getLong("idCurso");
 
-            System.out.println();
             Button bt=(Button) this.findViewById(R.id.btGuardarCambiosCurso);
             if(c==null){
                 bt.setText("Crear curso");
@@ -101,7 +101,7 @@ public class CrearCurso extends AppCompatActivity{
             txtDescripcion.setText(c.getDescripcion());
             txtFecha.setText(c.getFechaFormato());
             txtDuracion.setText(Double.toString(c.getDuracion()));
-            txtNumAsist.setText(c.getMaxAsistentes());
+            txtNumAsist.setText(Integer.toString(c.getMaxAsistentes()));
 
         }
 

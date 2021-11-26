@@ -55,21 +55,15 @@ public class VerCursos extends AppCompatActivity {
         setContentView(R.layout.ver_cursos_activity);
 
         this.creador=((MyApplication) this.getApplication()).esCreador();
-        Curso c=new Curso("Prueba","Creado por USER1","tematica", 0, 30,new Date(123,0,1),0.0, 6);
-        Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
+        //Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
-        this.drawInterface();
-        this.gestionAyuda();
-        this.triggerCreateCurso();
-
-
-
-
-
         Intent intent=this.getIntent();
         this.caso=this.getIntent().getStringExtra(MenuPrincipal.CURSOS_ACCESO);
 
+        this.drawInterface();
+        this.gestionAyuda();
+        this.triggerCreateCurso();
         Cursor cursos=this.cursos.getCursosFechasPrueba();
         TextView titulo=this.findViewById(R.id.tvVerCursos);
         switch (this.caso){
@@ -110,12 +104,34 @@ public class VerCursos extends AppCompatActivity {
         listViewCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                VerCursos.this.goToVerDetalleApuntarse(l);
+
+                switch (VerCursos.this.caso){
+                    case "OFERTADOS": VerCursos.this.goToEditarCurso(l);
+
+                        break;
+                    default: VerCursos.this.goToVerDetalleApuntarse(l);
+
+                }
+
             }
         });
 
 
 
+    }
+
+    public void onResume(){
+        super.onResume();
+
+    }
+    private void goToEditarCurso(long cursoID) {
+        Intent intent=new Intent(this,CrearCurso.class);
+        Cursor c=this.cursos.getById(cursoID);
+        c.moveToFirst();
+        Curso seleccionado=CursoFacade.readCurso(c);
+        intent.putExtra("curso",seleccionado);
+        intent.putExtra("idCurso",cursoID);
+        this.startActivity(intent);
     }
 
     private Spinner crearSpinner() {
@@ -243,10 +259,9 @@ public class VerCursos extends AppCompatActivity {
         Cursor c=this.cursos.getById(cursoID);
         c.moveToFirst();
         Curso seleccionado=CursoFacade.readCurso(c);
-        long id=CursoFacade.getID(c);
         intent.putExtra("curso",seleccionado);
         intent.putExtra("apuntarse",this.vistaParaApuntarse);
-        intent.putExtra("idCurso",id);
+        intent.putExtra("idCurso",cursoID);
         this.startActivity(intent);
     }
 

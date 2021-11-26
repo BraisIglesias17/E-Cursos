@@ -55,9 +55,11 @@ public class CursoAdapterCursor extends CursorAdapter {
         }
         fecha.setText(fechaUtil);
 
-        if (fechaActual.after(curso.getFecha())){
-            nombre.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-
+        if (!fechaActual.before(curso.getFecha()) && !fechaActual.equals(curso.getFecha())){
+            //nombre.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            fecha.setTextColor(Color.RED);
+        }else{
+            fecha.setTextColor(Color.BLACK);
         }
     }
 }

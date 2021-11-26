@@ -253,7 +253,7 @@ public class CursoFacade extends GeneralFacade{
 
     public Cursor getCursosFiltradosConFechaDivulgador(String atributo,String tematica,long id){
         Cursor toret=null;
-
+        tematica='%'+tematica+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
                 +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{atributo,tematica,Long.toString(id)});
 
@@ -262,7 +262,7 @@ public class CursoFacade extends GeneralFacade{
 
     public Cursor getCursosFiltradosDivulgador(String atributo,String tematica,String id){
         Cursor toret=null;
-
+        tematica='%'+tematica+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
                 +" WHERE "+atributo+" LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{tematica,id});
 
