@@ -43,7 +43,7 @@ public class CursoAdapterCursor extends CursorAdapter {
         nombre.setText(curso.getNombreCurso());
         Date fechaActual = new Date(System.currentTimeMillis());
         fecha.setText(curso.getFechaDB());
-
+        tematica.setText(curso.getTematica());
 
         String fechaUtil="";
         int i=0;

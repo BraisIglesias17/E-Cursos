@@ -180,6 +180,19 @@ public class CursoFacade extends GeneralFacade{
 
         return super.updateElement(DBManager.CURSO_COLUMN_NAME+" = ?",valores,new String[]{c.getNombreCurso()});
     }
+
+    public boolean updateCurso(Curso c, long id){
+        ContentValues valores=new ContentValues();
+        valores.put(DBManager.CURSO_COLUMN_NAME,c.getNombreCurso());
+        valores.put(DBManager.CURSO_COLUMN_DESCRIPCION,c.getDescripcion());
+        valores.put(DBManager.CURSO_COLUMN_DURACION,c.getDuracion());
+        valores.put(DBManager.CURSO_COLUMN_FECHA,c.getFechaDB());
+        valores.put(DBManager.CURSO_COLUMN_MAX_ASIST,c.getMaxAsistentes());
+        valores.put(DBManager.CURSO_COLUMN_ASIST,c.getNumAsistentes());
+        valores.put(DBManager.CURSO_COLUMN_TEMATICA,c.getTematica());
+
+        return super.updateElement(DBManager.CURSO_COLUMN_ID+" = ?",valores,new String[]{Long.toString(id)});
+    }
     public Cursor getCursosFiltrados(String atributo,String tematica){
         return super.getTablaFiltrada(atributo,tematica);
     }

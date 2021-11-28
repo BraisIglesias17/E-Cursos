@@ -79,9 +79,9 @@ public class Curso implements Serializable {
     }
 
     public String getFechaFormato(){
-        int anho=this.fecha.getYear();
-        int mes=this.fecha.getMonth();
-        int dia=this.fecha.getDay();
+        int anho=1900+this.fecha.getYear();
+        int mes=1+this.fecha.getMonth();
+        int dia=this.fecha.getDate();
 
         return dia+"/"+mes+"/"+anho;
     }
@@ -115,7 +115,21 @@ public class Curso implements Serializable {
 
     }
 
+    public static int getPosTematica(String tematica){
+        switch (tematica){
+            case "SALUD": return 0;
 
+            case "TECNOLOGIA": return 1;
+
+            case "DEPORTE": return 2;
+
+            case "MEDITACION": return 3;
+
+            case "ECONOMIA": return 4;
+
+            default:  return 5;
+        }
+    }
 
     @Override
     public String toString() {

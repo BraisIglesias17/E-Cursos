@@ -95,6 +95,7 @@
                 android:layout_width="265dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:clickable="true"
                 android:gravity="center"
                 android:text="@string/fecha"
                 android:textSize="22sp" />
@@ -104,7 +105,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
+                android:editable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="05/11/2021"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
