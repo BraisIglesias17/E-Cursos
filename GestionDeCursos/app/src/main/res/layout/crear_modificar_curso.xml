@@ -175,11 +175,22 @@
 
             <Button
                 android:id="@+id/btGuardarCambiosCurso"
-                android:layout_width="wrap_content"
+                android:layout_width="179dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="0"
                 android:text="@string/guardarCambios"
                 android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btEliminarCurso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="0"
+                android:text="@string/eliminarCurso"
+                android:textSize="20sp" />
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
