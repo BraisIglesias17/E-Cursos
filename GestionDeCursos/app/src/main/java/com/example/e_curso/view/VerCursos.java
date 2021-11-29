@@ -48,11 +48,13 @@ public class VerCursos extends AppCompatActivity {
     private CursoAdapterCursor adapterCursos;
     private boolean vistaParaApuntarse=false;
     private String caso;
+    private ListView listViewCursos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_cursos_activity);
+
 
         this.creador=((MyApplication) this.getApplication()).esCreador();
         //Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
@@ -65,6 +67,8 @@ public class VerCursos extends AppCompatActivity {
         this.gestionAyuda();
         this.triggerCreateCurso();
         Cursor cursos=this.cursos.getCursosFechasPrueba();
+
+
         TextView titulo=this.findViewById(R.id.tvVerCursos);
         switch (this.caso){
             case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba(); this.vistaParaApuntarse=true;
@@ -97,11 +101,11 @@ public class VerCursos extends AppCompatActivity {
         });
 
 
-        ListView listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
+        this.listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
 
-        listViewCursos.setAdapter(adapterCursos);
+        this.listViewCursos.setAdapter(adapterCursos);
 
-        listViewCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listViewCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -120,8 +124,41 @@ public class VerCursos extends AppCompatActivity {
 
     }
 
+    public Cursor gestionVerCursos(String caso){
+        Cursor toret=null;
+
+        TextView titulo=this.findViewById(R.id.tvVerCursos);
+        switch (this.caso){
+            case "GENERALES": titulo.setText("Cursos"); toret=this.cursos.getCursosFechasPrueba(); this.vistaParaApuntarse=true;
+                break;
+            case "APUNTADOS": titulo.setText("Mis Cursos");
+                AsistirFacade af=new AsistirFacade(((MyApplication) this.getApplication()).getDBManager());
+                toret=af.getCursosApuntados(((MyApplication) this.getApplication()).getId_user_logged());
+                this.vistaParaApuntarse=false;
+                break;
+            case "OFERTADOS": titulo.setText("Mis cursos publicados");  toret=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
+                this.vistaParaApuntarse=false;
+                break;
+        }
+
+        return toret;
+    }
+
+    @Override
     public void onResume(){
         super.onResume();
+        this.creador=((MyApplication) this.getApplication()).esCreador();
+        //Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
+        DBManager db=((MyApplication) this.getApplication()).getDBManager();
+        this.cursos=new CursoFacade(db);
+        Intent intent=this.getIntent();
+        this.caso=this.getIntent().getStringExtra(MenuPrincipal.CURSOS_ACCESO);
+
+        Cursor c=this.gestionVerCursos(this.caso);
+
+        this.adapterCursos=new CursoAdapterCursor(this,c,this.cursos);
+
+        this.listViewCursos.setAdapter(this.adapterCursos);
 
     }
     private void goToEditarCurso(long cursoID) {
