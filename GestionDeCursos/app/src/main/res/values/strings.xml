@@ -15,6 +15,7 @@
     <string name="verUsuarios">Usuarios</string>
     <string name="verSolicitudes">Solicitudes</string>
     <string name="guardarCambios">Guardar cambios</string>
+    <string name="eliminarCurso">Eliminar Curso</string>
     <string name="crearCurso">Crear</string>
     <string name="nuevoCurso">Nuevo curso</string>
     <string name="lbTematica">Tematica</string>
