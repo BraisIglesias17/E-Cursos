@@ -53,6 +53,7 @@ public class Registro extends AppCompatActivity {
                 Intent intent = new Intent(Registro.this,MenuPrincipal.class);
 
                 Registro.this.startActivity(intent);
+
             }
         });
 
