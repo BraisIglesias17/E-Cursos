@@ -2,6 +2,7 @@ package com.example.e_curso.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,17 +42,16 @@ public class Registro extends AppCompatActivity {
             public void onClick(View view) {
                 int solicitud;
 
-                byte[] passBytes = passIntoBytes(pass);
+                byte[] passBytes = Registro.this.encriptarPassword(pass.getText().toString());
                 solicitud = comprobarSolicitud();
 
-                Usuario nuevoUsuario = new Usuario(usuario.toString(),nombreCompleto.toString(),passBytes,
-                        email.toString(), Usuario.Rol.USER, solicitud);
-                Usuario usuarioFinal = mockUpMethod(nuevoUsuario);
+                Usuario nuevoUsuario = new Usuario(usuario.getText().toString(),nombreCompleto.getText().toString(),passBytes,
+                        email.getText().toString(), Usuario.Rol.USER, solicitud);
 
-                uf.insertUsuario(usuarioFinal);
+                uf.insertUsuario(nuevoUsuario);
 
                 Intent intent = new Intent(Registro.this,MenuPrincipal.class);
-                intent.putExtra("usuario",usuarioFinal);
+
                 Registro.this.startActivity(intent);
             }
         });
@@ -68,17 +68,17 @@ public class Registro extends AppCompatActivity {
             return 0;
     }
 
-    private Usuario mockUpMethod(Usuario usuario){
-        byte [] digest;
-        MessageDigest md = null; //genero un resumen de  la contraseña en claro
+    private byte[] encriptarPassword(String password) {
+
+        byte [] digest=null;
         try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            MessageDigest md = MessageDigest.getInstance("SHA-256"); //genero un resumen de  la contraseña en claro
+            digest = md.digest(password.getBytes());
+        }catch (NoSuchAlgorithmException exception){
+            Log.e("ENCRYPT",exception.getMessage());
         }
-        digest = md.digest(usuario.getPass().toString().getBytes(StandardCharsets.UTF_8));
-        return new Usuario(usuario.getUser(), usuario.getNombreCompleto(),
-                digest,usuario.getEmail(), Usuario.Rol.USER,usuario.getSolicitud());
+
+        return digest;
     }
 
     private byte[] passIntoBytes(EditText pass){
