@@ -61,6 +61,14 @@ public class CrearCurso extends AppCompatActivity{
                 this.fecha=new Date(c.getFecha().getYear(),c.getFecha().getMonth(),c.getFecha().getDate());
                 this.crearSpinner(c.getTematica());
                 this.rellenarDatos(c);
+
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CrearCurso.this.modifyCurso();
+                        Toast.makeText(CrearCurso.this,"El curso ha sido modificado",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
 
