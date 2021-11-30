@@ -5,6 +5,9 @@
     <string name="crearCurso">Crear</string>
     <string name="intrSolic">Introduzca el nombre de la solicitud</string>
 
+    <string name="aforo">Aforo</string>
+    <string name="plazas">Plazas Ocupadas</string>
+
     <!--Login/Registro-->
     <string name="registrate">Regístrate</string>
     <string name="usuario">Usuario</string>
