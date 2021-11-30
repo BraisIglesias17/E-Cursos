@@ -42,7 +42,8 @@ public class VerCursoDetalle extends AppCompatActivity {
 
     private void configuracionBoton() {
         Button apuntarse=this.findViewById(R.id.btApuntarse);
-        if(this.actual.getNumAsistentes()==this.actual.getMaxAsistentes() || this.apuntarse==false){
+        if(this.actual.getNumAsistentes()==this.actual.getMaxAsistentes() || this.apuntarse==false
+            || !this.condicionesApuntarse()){
                 apuntarse.setVisibility(View.INVISIBLE);
         }else{
             apuntarse.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +59,20 @@ public class VerCursoDetalle extends AppCompatActivity {
                     apuntarse.setVisibility(View.INVISIBLE);
                 }
             });
+        }
+
+    }
+
+    private boolean condicionesApuntarse() {
+        boolean toret;
+        MyApplication myApp=(MyApplication)this.getApplication();
+        AsistirFacade af=new AsistirFacade(myApp.getDBManager());
+        long idLoggedUser=myApp.getId_user_logged();
+
+        if(idLoggedUser==this.actual.getCreador() || af.getParticipacion(this.idCursoActual,idLoggedUser)){
+            return false;
+        }else{
+            return true;
         }
 
     }

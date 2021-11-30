@@ -70,4 +70,13 @@ public class AsistirFacade extends  GeneralFacade{
 
         return toret;
     }
+
+    public boolean getParticipacion(long idCurso,long idUsuario){
+        Cursor toret=null;
+
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME
+                +" WHERE "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == ? AND "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" == ?", new String[]{Long.toString(idCurso),Long.toString(idUsuario)});
+
+        return toret.moveToFirst();
+    }
 }
