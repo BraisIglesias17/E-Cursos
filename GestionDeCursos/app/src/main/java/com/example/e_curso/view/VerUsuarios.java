@@ -32,24 +32,23 @@ import java.security.NoSuchAlgorithmException;
 public class VerUsuarios extends AppCompatActivity {
 
     private final int MODIFY_CODE = 1;
-    private final int DELETE_CODE = 2;
 
     private UsuarioFacade uf;
     private DBManager db;
     private UsuarioCursorAdapter cursorAdapter;
+    private ListView listViewUsuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
         setContentView(R.layout.ver_lista_usuarios);
-
+        listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
 
         //Inicializacion del entorno
-        ListView listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
+
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
 
-        this.uf.insertUsuario(this.mockUpMethod());
         Cursor cursorUsuarios=this.uf.getUsuarios();
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
@@ -78,11 +77,22 @@ public class VerUsuarios extends AppCompatActivity {
             }
         });*/
     }
+
+    @Override
     public void onResume(){
         super.onResume();
 
+        updateListView();
+
     }
 
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(this.cursorAdapter.getCursor()!=null){
+            this.cursorAdapter.getCursor().close();
+        }
+    }
 
      public void onCreateContextMenu(ContextMenu contxt, View v, ContextMenu.ContextMenuInfo cmi){
             if(v.getId()==R.id.lvListaUsuarios){
@@ -111,13 +121,18 @@ public class VerUsuarios extends AppCompatActivity {
         build.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+               UsuarioFacade usuarioBorrar  =  new UsuarioFacade(VerUsuarios.this.db);
+               usuarioBorrar.deleteUsuariosByFilter(DBManager.USUARIO_COLUMN_ID, id);
 
+               Toast.makeText(getApplicationContext(),"Usuario borrado correctamente",
+                        Toast.LENGTH_LONG).show();
+               updateListView();
             }
         });
         build.setNegativeButton("No",null);
         build.create().show();
-
     }
+
     private void triggerModificarUsuario(long id){
         Intent modificarUsuario = new Intent(VerUsuarios.this, VerUsuarioConcreto.class);
         modificarUsuario.putExtra("id",id);
@@ -126,6 +141,11 @@ public class VerUsuarios extends AppCompatActivity {
         Usuario toSend=UsuarioFacade.readUsuario(c);
         modificarUsuario.putExtra("usuario",toSend);
         VerUsuarios.this.startActivity(modificarUsuario);
+    }
+
+    private void updateListView(){
+        Cursor c = this.uf.getUsuarios();
+        this.cursorAdapter.changeCursor(c);
     }
 
     private void setBusqueda() {
@@ -161,7 +181,6 @@ public class VerUsuarios extends AppCompatActivity {
         if (requestCode == MODIFY_CODE
                 && resultCode == Activity.RESULT_OK) {
 
-            int pos = data.getExtras().getInt("pos");
             Usuario user = new Usuario();
             user.setUser(data.getExtras().getString("nombre"));
             user.setNombreCompleto(data.getExtras().getString("apellido"));
@@ -170,10 +189,10 @@ public class VerUsuarios extends AppCompatActivity {
                 user.setRol(Usuario.Rol.DIVUL);
             else
                 user.setRol(Usuario.Rol.USER);
-
+            uf.actualizarUsuario(user);
         }
     }
-
+/*
     private Usuario mockUpMethod(){
        String pass="user3";
        byte [] digest;
@@ -187,5 +206,5 @@ public class VerUsuarios extends AppCompatActivity {
         Usuario prueba=new Usuario("user3", "usuario no divulgador",digest,"user@mail.com", Usuario.Rol.USER,0);
         return prueba;
     }
-
+*/
 }

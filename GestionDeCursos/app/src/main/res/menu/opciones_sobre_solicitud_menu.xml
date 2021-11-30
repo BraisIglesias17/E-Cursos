@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemMenuAceptar"
+        android:icon="@drawable/aceptar"
+        android:title="Aceptar" />
+    <item
+        android:id="@+id/itemMenuRechazar"
+        android:icon="@drawable/rechazar"
+        android:title="Rechazar" />
+</menu>
