@@ -105,12 +105,37 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvPlazasOcupadas"
+                android:layout_width="107dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:text="Plazas ocupadas"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/etPlazasOcupadas"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:orientation="horizontal">
+
+            <TextView
                 android:id="@+id/tvNumMaximoAsistentesDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Numero de Asistentes"
+                android:text="Aforo maximo"
                 android:textSize="20sp" />
 
             <TextView

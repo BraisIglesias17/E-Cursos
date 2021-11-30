@@ -84,15 +84,18 @@ public class VerCursoDetalle extends AppCompatActivity {
         TextView fecha=(TextView)this.findViewById(R.id.etFechaCurso);
         TextView duracion=(TextView)this.findViewById(R.id.etDuracionCurso);
         TextView numAsistentes=(TextView)this.findViewById(R.id.etMaxAsistentes);
+        TextView numActualAsistentes=(TextView) this.findViewById(R.id.etPlazasOcupadas);
 
         fecha.setEnabled(false);
         duracion.setEnabled(false);
         numAsistentes.setEnabled(false);
+        numActualAsistentes.setEnabled(false);
 
         nombreCurso.setText(c.getNombreCurso());
         descripcion.setText(c.getDescripcion());
         duracion.setText(Double.toString(c.getDuracion()));
         numAsistentes.setText(Integer.toString(c.getMaxAsistentes()));
+        numActualAsistentes.setText(Integer.toString(c.getNumAsistentes()));
         fecha.setText(c.getFechaFormato());
 
 
