@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">E-Curso</string>
     <string name="registrate">Regístrate</string>
-    <string name="usuario">usuario</string>
-    <string name="passwd">contraseña</string>
+    <string name="usuario">Usuario</string>
+    <string name="nombreCompleto">Nombre Completo</string>
+    <string name="passwd">Contraseña</string>
+    <string name="email">Email</string>
     <string name="login">entrar</string>
+    <string name="divulgador">Divulgador</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="eliminar">Eliminar</string>
     <string name="curso">Curso</string>
     <string name="descripcion">Descripción</string>
     <string name="fecha">Fecha</string>
@@ -18,7 +23,7 @@
     <string name="eliminarCurso">Eliminar Curso</string>
     <string name="crearCurso">Crear</string>
     <string name="nuevoCurso">Nuevo curso</string>
-    <string name="lbTematica">Tematica</string>
+    <string name="lbTematica">Temática</string>
     <string name="lblFiltroPorFecha">Mostrar cursos pasados</string>
     <!--Menu contextual ListView cursos-->
     <string name="action_ver_curso">Ver curso en detalle</string>

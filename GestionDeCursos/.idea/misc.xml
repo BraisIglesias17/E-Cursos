@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.22509057971014493" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/crear_modificar_curso.xml" value="0.23777173913043478" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/listview_curso.xml" value="0.2341485507246377" />
+        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_admin_activity.xml" value="0.22509057971014493" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/menu_principal_usuario_activity.xml" value="0.2341485507246377" />
+        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/sign_in_activity.xml" value="0.22509057971014493" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_curso_detalle_activity.xml" value="0.2341485507246377" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_cursos_activity.xml" value="0.2341485507246377" />
+        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_lista_usuarios.xml" value="0.22509057971014493" />
+        <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/layout/ver_usuario_concreto.xml" value="0.22509057971014493" />
         <entry key="..\:/Program Files/Android/Projects/E-Cursos/GestionDeCursos/app/src/main/res/menu/menu_contextual_lvcursos.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/USUARIO/Desktop/Cuarto/DM/GestionDeCursos/app/src/main/res/layout/list_usuarios.xml" value="0.36666666666666664" />

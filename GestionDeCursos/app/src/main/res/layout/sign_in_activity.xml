@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Nombre"
+                android:text="@string/usuario"
                 android:textSize="23sp" />
 
             <EditText
@@ -57,7 +57,7 @@
                 android:layout_weight="0.5"
                 android:width="60sp"
                 android:gravity="center"
-                android:text="Apellidos"
+                android:text="@string/nombreCompleto"
                 android:textSize="23sp" />
 
             <EditText
@@ -84,7 +84,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Email"
+                android:text="@string/email"
                 android:textSize="23sp" />
 
             <EditText
@@ -111,7 +111,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Contraseña"
+                android:text="@string/passwd"
                 android:textSize="23sp" />
 
             <EditText
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:text="Divulgador"
+                android:text="@string/divulgador"
                 android:textSize="23sp" />
         </LinearLayout>
 
@@ -153,7 +153,7 @@
                 android:id="@+id/btSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registrarse"
+                android:text="@string/registrarse"
                 android:textSize="23sp" />
         </LinearLayout>
     </LinearLayout>
