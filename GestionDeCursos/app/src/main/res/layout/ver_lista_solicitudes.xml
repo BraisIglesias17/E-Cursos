@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Solicitudes"
+                android:text="@string/solicitudes"
                 android:textSize="33sp" />
         </LinearLayout>
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:ems="10"
-                android:hint="Buscar"
+                android:hint="@string/intrSolic"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:textAlignment="center" />

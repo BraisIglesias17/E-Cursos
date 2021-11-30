@@ -55,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Fecha"
+                android:text="@string/fecha"
                 android:textSize="20sp" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Duracion"
+                android:text="@string/duracion"
                 android:textSize="20sp" />
 
             <TextView
@@ -110,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Numero de Asistentes"
+                android:text="@string/numAsist"
                 android:textSize="20sp" />
 
             <TextView
@@ -137,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="apuntarse"
+                android:text="@string/apuntarse"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

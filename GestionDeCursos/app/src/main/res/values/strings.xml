@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">E-Curso</string>
+
+    <string name="apuntarse">Apuntarse</string>
+    <string name="crearCurso">Crear</string>
+    <string name="intrSolic">Introduzca el nombre de la solicitud</string>
+
+    <!--Login/Registro-->
     <string name="registrate">Regístrate</string>
     <string name="usuario">Usuario</string>
     <string name="nombreCompleto">Nombre Completo</string>
@@ -8,23 +14,40 @@
     <string name="login">entrar</string>
     <string name="divulgador">Divulgador</string>
     <string name="registrarse">Registrarse</string>
-    <string name="eliminar">Eliminar</string>
+    <!--Crear/Modificar Curso-->
     <string name="curso">Curso</string>
+    <string name="tematica">Temática</string>
     <string name="descripcion">Descripción</string>
     <string name="fecha">Fecha</string>
     <string name="duracion">Duración</string>
     <string name="numAsist">Número de Asistentes</string>
+    <string name="guardarCambios">Guardar cambios</string>
+    <string name="eliminarCurso">Eliminar Curso</string>
+    <!--Menu principal usuario Activity-->
     <string name="verCursos">Ver Cursos</string>
     <string name="verMisCursos">Ver Mis Cursos</string>
     <string name="verCursosPublicados">Ver Cursos Publicados</string>
-    <string name="verUsuarios">Usuarios</string>
-    <string name="verSolicitudes">Solicitudes</string>
-    <string name="guardarCambios">Guardar cambios</string>
-    <string name="eliminarCurso">Eliminar Curso</string>
-    <string name="crearCurso">Crear</string>
+    <!--Menu principal usuario Activity-->
+    <string name="usuarios">Usuarios</string>
+    <string name="solicitudes">Solicitud</string>
+    <!--ListView Curso-->
+    <string name="nombreCurso">Nombre Curso</string>
+    <!--Filtro Cursos Layout-->
+    <string name="filtroFecha">Mostrar cursos pasados</string>
+    <!--Menu general-->
+    <string name="verPerfil">Ver perfil</string>
+    <string name="desconectar">Desconectar</string>
+    <!--Menu opciones sobre usuario-->
+    <string name="eliminar">Eliminar</string>
+    <string name="modificar">Modificar</string>
+    <!--Menu opciones sobre solicitud-->
+    <string name="aceptar">Aceptar</string>
+    <string name="rechazar">Rechazar</string>
+    <!--VerCursosActivity-->
+    <string name="cursos">Cursos</string>
+    <string name="buscar">Buscar</string>
     <string name="nuevoCurso">Nuevo curso</string>
-    <string name="lbTematica">Temática</string>
-    <string name="lblFiltroPorFecha">Mostrar cursos pasados</string>
+    <string name="filtrar">Filtrar</string>
     <!--Menu contextual ListView cursos-->
     <string name="action_ver_curso">Ver curso en detalle</string>
     <string name="action_modificar_curso">Modificar curso</string>

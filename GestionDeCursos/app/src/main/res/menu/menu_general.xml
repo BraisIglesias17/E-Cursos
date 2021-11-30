@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/miVerPerfil"
-        android:title="Ver perfil" />
+        android:title="@string/verPerfil" />
     <item
         android:id="@+id/miLogOut"
-        android:title="Desconectar" />
+        android:title="@string/desconectar" />
 </menu>

@@ -4,9 +4,9 @@
     <item
         android:id="@+id/itemMenuAceptar"
         android:icon="@drawable/aceptar"
-        android:title="Aceptar" />
+        android:title="@string/aceptar" />
     <item
         android:id="@+id/itemMenuRechazar"
         android:icon="@drawable/rechazar"
-        android:title="Rechazar" />
+        android:title="@string/rechazar" />
 </menu>

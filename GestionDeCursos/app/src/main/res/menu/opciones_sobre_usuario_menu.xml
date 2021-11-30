@@ -4,9 +4,9 @@
     <item
         android:id="@+id/itemMenuModificar"
         android:icon="@drawable/editar"
-        android:title="Modificar" />
+        android:title="@string/modificar" />
     <item
         android:id="@+id/itemMenuEliminar"
         android:icon="@drawable/eliminar"
-        android:title="Eliminar" />
+        android:title="@string/eliminar" />
 </menu>

@@ -47,7 +47,7 @@
                 android:layout_width="132dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/lbTematica"
+                android:text="@string/tematica"
                 android:textSize="22sp" />
 
             <Spinner

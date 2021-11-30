@@ -30,7 +30,7 @@
                 android:layout_weight="0.3"
                 android:autofillHints="Nombre Completo"
                 android:gravity="center"
-                android:hint="nombre de usuario"
+                android:hint="@string/usuario"
                 android:inputType="text"
                 android:textSize="23sp" />
         </LinearLayout>
@@ -57,7 +57,7 @@
                 android:layout_weight="0.3"
                 android:autofillHints="no"
                 android:gravity="center"
-                android:hint="Nombre completo"
+                android:hint="@string/nombreCompleto"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:textSize="19sp" />
@@ -85,7 +85,7 @@
                 android:layout_weight="0.3"
                 android:autofillHints="Nombre Completo"
                 android:gravity="center"
-                android:hint="mail"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:textSize="19sp" />

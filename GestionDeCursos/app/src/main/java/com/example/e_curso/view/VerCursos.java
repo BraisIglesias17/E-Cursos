@@ -40,7 +40,7 @@ import java.util.Date;
 public class VerCursos extends AppCompatActivity {
 
 
-    private static final String MENSAJE_AYUDA_CURSOS = "Manten pulsado sobre un curso para ver las opciones";
+    private static final String MENSAJE_AYUDA_CURSOS = "Pulsa sobre un curso para ver las opciones";
 
 
     //ControladorCurso
