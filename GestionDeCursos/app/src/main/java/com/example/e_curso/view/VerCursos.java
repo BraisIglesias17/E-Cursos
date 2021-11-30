@@ -148,7 +148,7 @@ public class VerCursos extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         this.creador=((MyApplication) this.getApplication()).esCreador();
-        //Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
+
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
         Intent intent=this.getIntent();
@@ -161,6 +161,14 @@ public class VerCursos extends AppCompatActivity {
         this.listViewCursos.setAdapter(this.adapterCursos);
 
     }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(this.adapterCursos.getCursor()!=null){
+            this.adapterCursos.getCursor().close();
+        }
+    }
     private void goToEditarCurso(long cursoID) {
         Intent intent=new Intent(this,CrearCurso.class);
         Cursor c=this.cursos.getById(cursoID);
@@ -171,17 +179,6 @@ public class VerCursos extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    private Spinner crearSpinner() {
-        Spinner spinner = new Spinner(this);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.tematicas_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        /*spinner.setGravity(Gravity.CENTER);
-        spinner.setBackgroundColor(0xBA68C8);*/
-        spinner.setAdapter(adapter);
-        return spinner;
-
-    }
     private void rellenarSpinner(Spinner spinner) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.tematicas_array, android.R.layout.simple_spinner_item);

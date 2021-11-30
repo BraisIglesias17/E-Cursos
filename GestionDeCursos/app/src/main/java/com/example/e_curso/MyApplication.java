@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.e_curso.core.Usuario;
 import com.example.e_curso.database.DBManager;
+import com.example.e_curso.model.UsuarioFacade;
 
 public class MyApplication extends Application {
 
@@ -23,6 +24,10 @@ public class MyApplication extends Application {
         return this.logeado;
     }
 
+    public void updateUserLogged(){
+        UsuarioFacade uf=new UsuarioFacade(this.db);
+        this.logeado=uf.getUsuarioById(id_user_logged);
+    }
     public void setLogeado(Usuario logeado) {
         this.logeado = logeado;
     }

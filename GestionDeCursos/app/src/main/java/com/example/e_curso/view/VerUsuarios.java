@@ -78,7 +78,10 @@ public class VerUsuarios extends AppCompatActivity {
             }
         });*/
     }
+    public void onResume(){
+        super.onResume();
 
+    }
 
 
      public void onCreateContextMenu(ContextMenu contxt, View v, ContextMenu.ContextMenuInfo cmi){
