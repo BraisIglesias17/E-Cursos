@@ -96,7 +96,9 @@ public class UsuarioFacade extends GeneralFacade{
     }
 
     public Usuario getUsuarioById(long id){
-        return UsuarioFacade.readUsuario(super.getById(id));
+        Cursor c=super.getById(id);
+        c.moveToFirst();
+        return UsuarioFacade.readUsuario(c);
     }
 
     public Cursor buscarUsuario(String user){
