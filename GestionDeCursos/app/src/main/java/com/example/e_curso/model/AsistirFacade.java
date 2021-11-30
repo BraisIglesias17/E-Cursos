@@ -54,4 +54,20 @@ public class AsistirFacade extends  GeneralFacade{
 
         return toret;
     }
+
+    public boolean eliminarParticipacionesDeCurso(long cursoID){
+        SQLiteDatabase db=this.dbManager.getWritableDatabase();
+
+        boolean toret=false;
+
+        try{
+            db.execSQL("DELETE FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME+" WHERE "+ DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == ?  "
+                    ,new Object[]{Long.toString(cursoID)});
+            toret=true;
+        }catch (Exception exc){
+            Log.e("DELETE ACTION",exc.getMessage());
+        }
+
+        return toret;
+    }
 }
