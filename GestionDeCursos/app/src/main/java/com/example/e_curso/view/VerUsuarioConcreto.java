@@ -21,6 +21,7 @@ import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Usuario;
+import com.example.e_curso.general.General;
 import com.example.e_curso.model.UsuarioFacade;
 
 import java.security.MessageDigest;
@@ -63,30 +64,34 @@ public class VerUsuarioConcreto extends AppCompatActivity{
         btModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VerUsuarioConcreto.this.usuarioActual.setUser(nuevoNombre.getText().toString());
-                VerUsuarioConcreto.this.usuarioActual.setNombreCompleto(nuevoApellido.getText().toString());
-                VerUsuarioConcreto.this.usuarioActual.setEmail(nuevoEmail.getText().toString());
-                if(VerUsuarioConcreto.this.usuarioActual.getRol()==Usuario.Rol.USER && esDivulgador.isChecked()){
-                    //En caso de que un usuario se quiera hacer divulgador
-                    VerUsuarioConcreto.this.usuarioActual.setSolicitud(1);
-                }else if(VerUsuarioConcreto.this.usuarioActual.getRol()==Usuario.Rol.DIVUL && !esDivulgador.isChecked()){
-                    VerUsuarioConcreto.this.usuarioActual.setRol(Usuario.Rol.USER);
-                }
 
-
-                VerUsuarioConcreto.this.usuarioFacade.actualizarUsuario(VerUsuarioConcreto.this.usuarioActual);
-                if(((MyApplication) VerUsuarioConcreto.this.getApplication()).getUserLogged().getRol()!=Usuario.Rol.ADMIN){
-                    ((MyApplication) VerUsuarioConcreto.this.getApplication()).updateUserLogged();
-                }
                 AlertDialog.Builder dlg=new AlertDialog.Builder(VerUsuarioConcreto.this);
-                dlg.setMessage("Modificado correctamente");
-                dlg.setNeutralButton("volver", new DialogInterface.OnClickListener() {
+                dlg.setMessage("Estas seguro de modificar esta información");
+                dlg.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                            VerUsuarioConcreto.this.finish();
+                        VerUsuarioConcreto.this.usuarioActual.setUser(nuevoNombre.getText().toString());
+                        VerUsuarioConcreto.this.usuarioActual.setNombreCompleto(nuevoApellido.getText().toString());
+                        VerUsuarioConcreto.this.usuarioActual.setEmail(nuevoEmail.getText().toString());
+                        if(VerUsuarioConcreto.this.usuarioActual.getRol()==Usuario.Rol.USER && esDivulgador.isChecked()){
+                            //En caso de que un usuario se quiera hacer divulgador
+                            VerUsuarioConcreto.this.usuarioActual.setSolicitud(1);
+                        }else if(VerUsuarioConcreto.this.usuarioActual.getRol()==Usuario.Rol.DIVUL && !esDivulgador.isChecked()){
+                            VerUsuarioConcreto.this.usuarioActual.setRol(Usuario.Rol.USER);
+                        }
+
+
+                        VerUsuarioConcreto.this.usuarioFacade.actualizarUsuario(VerUsuarioConcreto.this.usuarioActual);
+                        if(((MyApplication) VerUsuarioConcreto.this.getApplication()).getUserLogged().getRol()!=Usuario.Rol.ADMIN){
+                            ((MyApplication) VerUsuarioConcreto.this.getApplication()).updateUserLogged();
+                        }
+                        VerUsuarioConcreto.this.finish();
+
                     }
                 });
+                dlg.setNegativeButton("No", null);
                 dlg.create().show();
+
             }
         });
 
