@@ -257,9 +257,9 @@ public class CursoFacade extends GeneralFacade{
 
     public Cursor getCursosFiltradosConFecha(String atributo,String tematica){
         Cursor toret=null;
-
+        tematica='%'+tematica+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
-                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ?", new String[]{atributo,tematica});
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND "+atributo+" LIKE ?", new String[]{tematica});
 
         return toret;
     }
@@ -268,7 +268,7 @@ public class CursoFacade extends GeneralFacade{
         Cursor toret=null;
         tematica='%'+tematica+'%';
         toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME
-                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND ? LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{atributo,tematica,Long.toString(id)});
+                +" WHERE "+DBManager.CURSO_COLUMN_FECHA +">= DATE('now') AND "+atributo+" LIKE ? AND "+DBManager.CURSO_COLUMN_USUARIO_ID+" == ?", new String[]{tematica,Long.toString(id)});
 
         return toret;
     }
