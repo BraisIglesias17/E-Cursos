@@ -114,6 +114,15 @@ public class UsuarioFacade extends GeneralFacade{
         return toret;
     }
 
+    public Cursor buscarSolicitudesPorNombres(String nombre){
+        Cursor toret=null;
+        nombre='%'+nombre+'%';
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_TABLE_NAME +" WHERE "+DBManager.USUARIO_COLUMN_SOLICITUD+ "== 1" +
+                " AND "+DBManager.USUARIO_COLUMN_NAME+" LIKE ?", new String[]{nombre});
+
+        return toret;
+    }
+
     public  Cursor getSolicitudesPendientes(){
         return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_SOLICITUD,Integer.toString(Usuario.PENDIENTE));
 

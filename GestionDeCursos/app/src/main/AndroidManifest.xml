@@ -96,6 +96,15 @@
                 <action android:name="android.intent.action.CALL" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.VerSolicitudes"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>
