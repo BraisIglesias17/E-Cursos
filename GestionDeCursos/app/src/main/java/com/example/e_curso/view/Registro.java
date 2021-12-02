@@ -1,6 +1,7 @@
 package com.example.e_curso.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -63,12 +64,12 @@ public class Registro extends AppCompatActivity {
 
                         Registro.this.startActivity(intent);
                     }else{
-                        Registro.this.dialogoErrorDatos("Nombre de usuario ocupado");
+                        Registro.dialogoErrorDatos("Nombre de usuario ocupado",Registro.this);
                     }
 
 
                 }else{
-                    Registro.this.dialogoErrorDatos("Algún campo es vacío o hay algún error en los datos");
+                    Registro.dialogoErrorDatos("Algún campo es vacío o hay algún error en los datos",Registro.this);
                 }
 
             }
@@ -77,8 +78,8 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    private void dialogoErrorDatos(String msg) {
-        AlertDialog.Builder dlg=new AlertDialog.Builder(this);
+    public static void dialogoErrorDatos(String msg, Context context) {
+        AlertDialog.Builder dlg=new AlertDialog.Builder(context);
         dlg.setTitle("Error");
         dlg.setMessage(msg);
         dlg.setNeutralButton("volver",null);

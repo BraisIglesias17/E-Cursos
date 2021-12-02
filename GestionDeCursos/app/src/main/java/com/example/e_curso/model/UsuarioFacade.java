@@ -122,6 +122,17 @@ public class UsuarioFacade extends GeneralFacade{
 
         return toret;
     }
+    public boolean existeAdmin(){
+        boolean toret=true;
+        String nombre="admin";
+        Cursor c=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_TABLE_NAME +" WHERE "+DBManager.USUARIO_COLUMN_NAME+" LIKE ?", new String[]{nombre});
+
+        if(c.getCount()!=1) {
+            toret=false;
+        }
+
+        return toret;
+    }
 
     public  Cursor getSolicitudesPendientes(){
         return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_SOLICITUD,Integer.toString(Usuario.PENDIENTE));

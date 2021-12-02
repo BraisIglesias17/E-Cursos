@@ -145,19 +145,24 @@ public class CrearCurso extends AppCompatActivity{
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
-                String nombre=txtNombreCurso.getText().toString();
-                String descripcion=txtDescripcion.getText().toString();
-                String tematica=(String) txtTematica.getSelectedItem();
-                Date fecha=CrearCurso.this.fecha;
-                Double duracion=Double.parseDouble(txtDuracion.getText().toString());
-                int numAsist=Integer.parseInt(txtNumAsist.getText().toString());
-                long id_Creador=((MyApplication) CrearCurso.this.getApplication()).getId_user_logged();
-                Curso toModify=new Curso(nombre,descripcion,tematica,0,numAsist,fecha,duracion,id_Creador);
+                if(CrearCurso.this.comprobarDatos()){
+                    String nombre=txtNombreCurso.getText().toString();
+                    String descripcion=txtDescripcion.getText().toString();
+                    String tematica=(String) txtTematica.getSelectedItem();
+                    Date fecha=CrearCurso.this.fecha;
+                    Double duracion=Double.parseDouble(txtDuracion.getText().toString());
+                    int numAsist=Integer.parseInt(txtNumAsist.getText().toString());
+                    long id_Creador=((MyApplication) CrearCurso.this.getApplication()).getId_user_logged();
+                    Curso toModify=new Curso(nombre,descripcion,tematica,0,numAsist,fecha,duracion,id_Creador);
 
-                CursoFacade cf=new CursoFacade(((MyApplication) CrearCurso.this.getApplication()).getDBManager());
-                cf.updateCurso(toModify,CrearCurso.this.idCurso);
-                CrearCurso.this.finish();
-                Toast.makeText(CrearCurso.this,"El curso ha sido modificado correctamente",Toast.LENGTH_SHORT).show();
+                    CursoFacade cf=new CursoFacade(((MyApplication) CrearCurso.this.getApplication()).getDBManager());
+                    cf.updateCurso(toModify,CrearCurso.this.idCurso);
+                    CrearCurso.this.finish();
+                    Toast.makeText(CrearCurso.this,"El curso ha sido modificado correctamente",Toast.LENGTH_SHORT).show();
+                }else{
+                        Registro.dialogoErrorDatos("Algún esta vacío o es erróneo",CrearCurso.this);
+                }
+
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -238,5 +243,32 @@ public class CrearCurso extends AppCompatActivity{
         });
 
     }
+    private boolean comprobarDatos(){
+        boolean toret=true;
+
+        EditText nombreCurso=(EditText)this.findViewById(R.id.etNombreCurso);
+        EditText descripcion=(EditText)this.findViewById(R.id.etResumenCurso);
+        EditText txtFecha=(EditText)this.findViewById(R.id.etFechaCurso);
+        EditText duracion=(EditText)this.findViewById(R.id.etDuracionCurso);
+        EditText numAsist=(EditText)this.findViewById(R.id.etMaxAsistentes);
+
+
+        //comprobacion de que las cadenas no sean vacias
+        if(nombreCurso.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty()
+           ) {
+                toret=false;
+        }
+        if(toret){
+            try {
+                double d=Double.parseDouble(duracion.getText().toString());
+                int i=Integer.parseInt(numAsist.getText().toString());
+            }catch (NumberFormatException exc){
+                toret=false;
+            }
+        }
+        return toret;
+    }
+
+
 
 }

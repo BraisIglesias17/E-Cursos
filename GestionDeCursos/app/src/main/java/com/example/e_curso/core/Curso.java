@@ -35,7 +35,7 @@ public class Curso implements Serializable {
     public long getCreador(){
         return this.idCreador;
     }
-    public void setCreador(int usuario){
+    public void setCreador(long idCreador){
         this.idCreador=idCreador;
     }
     public void reservarPlaza(){

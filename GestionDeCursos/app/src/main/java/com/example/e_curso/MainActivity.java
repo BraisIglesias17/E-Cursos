@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         TextView bt= (TextView) this.findViewById(R.id.etSignIn);
         Button botonLogIn=(Button) this.findViewById(R.id.btLogIn);
 
-
+        this.createAdmin();
         botonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 if(acceder){
                     MainActivity.this.admin=((MyApplication)MainActivity.this.getApplication()).esAdmin();
                 }
-
-
 
 
                 if(acceder && !admin){
@@ -122,5 +120,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return digest;
+    }
+
+
+    private void createAdmin(){
+        byte[] passwd=this.encriptarPassword("admin");
+        Usuario admin=new Usuario("admin","admin",passwd,"admin@mail.com",Usuario.Rol.ADMIN,0);
+        if(!this.usuarioDB.existeAdmin()){
+            this.usuarioDB.insertUsuario(admin);
+        }
     }
 }

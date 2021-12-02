@@ -41,7 +41,7 @@ public class CursoFacade extends GeneralFacade{
         toret.setMaxAsistentes(cursor.getInt(cursor.getColumnIndex(DBManager.CURSO_COLUMN_MAX_ASIST)));
         toret.setAsistentes(cursor.getInt(cursor.getColumnIndex(DBManager.CURSO_COLUMN_ASIST)));
         toret.setFecha(convertDate(cursor.getString(cursor.getColumnIndex(DBManager.CURSO_COLUMN_FECHA))));
-        toret.setCreador(cursor.getInt(cursor.getColumnIndex(DBManager.CURSO_COLUMN_USUARIO_ID)));
+        toret.setCreador(cursor.getLong(cursor.getColumnIndex(DBManager.CURSO_COLUMN_USUARIO_ID)));
 
 
         return toret;

@@ -54,7 +54,7 @@ public class VerCursoDetalle extends AppCompatActivity {
                     cf.actualizarAsistentes(VerCursoDetalle.this.actual.getNombreCurso(),VerCursoDetalle.this.actual.getNumAsistentes());
                     AsistirFacade af=new AsistirFacade(((MyApplication)(VerCursoDetalle.this.getApplication())).getDBManager());
                     af.insertarParticipacion(((MyApplication)(VerCursoDetalle.this.getApplication())).getId_user_logged(),VerCursoDetalle.this.idCursoActual);
-
+                    VerCursoDetalle.this.finish();
                     Toast.makeText(VerCursoDetalle.this,"Te has apuntado a este curso",Toast.LENGTH_LONG);
                     apuntarse.setVisibility(View.INVISIBLE);
                 }
