@@ -149,6 +149,7 @@ public class Registro extends AppCompatActivity {
             }
            usuarios.moveToNext();
         }
+        usuarios.close();
         return toret;
     }
 }

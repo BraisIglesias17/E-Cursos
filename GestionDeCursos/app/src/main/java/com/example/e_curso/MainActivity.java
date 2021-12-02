@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+        usuario.close();
         return toret;
     }
     private byte[] encriptarPassword(String password) {

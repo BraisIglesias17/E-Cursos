@@ -136,4 +136,19 @@ public class VerSolicitudes extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateListView();
+
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(this.cursorAdapter.getCursor()!=null){
+            this.cursorAdapter.getCursor().close();
+        }
+    }
+
 }

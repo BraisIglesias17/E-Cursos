@@ -130,6 +130,7 @@ public class UsuarioFacade extends GeneralFacade{
         if(c.getCount()!=1) {
             toret=false;
         }
+        c.close();
 
         return toret;
     }
