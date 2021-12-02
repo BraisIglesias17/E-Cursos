@@ -42,7 +42,7 @@ public class VerUsuarioConcreto extends AppCompatActivity{
     //Info del intent + botones + datos a guardar
         final Intent datosUsuario = this.getIntent();
         final Button btModificar = (Button) this.findViewById(R.id.btModificarUsuario);
-        final Button btEliminar = (Button) this.findViewById(R.id.btEliminarUsuario);
+
         final EditText nuevoNombre = (EditText) this.findViewById(R.id.etuserName);
         final EditText nuevoApellido = (EditText) this.findViewById(R.id.etNombreCompleto);
         final EditText nuevoEmail = (EditText) this.findViewById(R.id.etEmail);
@@ -54,10 +54,6 @@ public class VerUsuarioConcreto extends AppCompatActivity{
 
         Usuario logueado=((MyApplication) this.getApplication()).getUserLogged();
 
-        if(logueado.getRol()!=Usuario.Rol.ADMIN){
-            LinearLayout eliminar=this.findViewById(R.id.layoutUsuarioConcreto);
-            eliminar.setVisibility(View.GONE);
-        }
         this.rellenarPagina(this.usuarioActual);
         //nuevoNombre.setText(datosUsuario.getExtras().getString("nombre"));
 
@@ -95,12 +91,7 @@ public class VerUsuarioConcreto extends AppCompatActivity{
             }
         });
 
-        btEliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                VerUsuarioConcreto.this.finish();
-            }
-        });
+
 
     }
 
