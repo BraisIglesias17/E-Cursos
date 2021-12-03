@@ -149,7 +149,10 @@ public class Registro extends AppCompatActivity {
             }
            usuarios.moveToNext();
         }
-        usuarios.close();
+        if(usuarios!=null){
+            usuarios.close();
+        }
+
         return toret;
     }
 }
