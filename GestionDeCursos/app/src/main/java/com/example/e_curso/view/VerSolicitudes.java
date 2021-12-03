@@ -1,7 +1,5 @@
 package com.example.e_curso.view;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -51,7 +49,6 @@ public class VerSolicitudes extends AppCompatActivity {
         listViewSolicitudes.setAdapter(this.cursorAdapter);
 
         this.registerForContextMenu(listViewSolicitudes);
-
     }
 
     public void onCreateContextMenu(ContextMenu contxt, View v, ContextMenu.ContextMenuInfo cmi){

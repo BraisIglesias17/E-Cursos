@@ -40,7 +40,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:textSize="23sp" />
+                android:textSize="23sp"
+                android:enabled="false"/>
         </LinearLayout>
 
         <LinearLayout

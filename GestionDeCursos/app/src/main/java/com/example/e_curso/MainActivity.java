@@ -105,9 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 app.setLogeado(actual);
                 app.setId_user_logged(id);
             }
-
+            usuario.close();
         }
-        usuario.close();
         return toret;
     }
     private byte[] encriptarPassword(String password) {

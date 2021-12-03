@@ -7,7 +7,6 @@ public class Usuario implements Serializable {
     public static final int RECHAZADO=2;
     public static final int ACEPTADO=0;
     public static final int PENDIENTE=1;
-    public static final int NO_SOLCITADA=9;
 
     private String user, nombreCompleto,  email;
     private byte [] pass;
@@ -28,7 +27,9 @@ public class Usuario implements Serializable {
     public int getEstadoSolicitud() {
         return this.solicitud;
     }
-
+    public void setSolicitud(int solicitud) {
+        this.solicitud = solicitud;
+    }
 
     public static enum Rol{
         ADMIN,
@@ -50,14 +51,6 @@ public class Usuario implements Serializable {
         this.solicitud=solicitud;
     }
 
-    public int getSolicitud() {
-        return solicitud;
-    }
-
-    public void setSolicitud(int solicitud) {
-        this.solicitud = solicitud;
-    }
-
     public String getUser(){
         return user;
     }
@@ -71,14 +64,6 @@ public class Usuario implements Serializable {
     public void setPass(byte[] pass){
         this.pass=pass;
     }
-
-    /*
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre){
-        this.nombre=nombre;
-    }*/
 
     public String getNombreCompleto(){
         return nombreCompleto;

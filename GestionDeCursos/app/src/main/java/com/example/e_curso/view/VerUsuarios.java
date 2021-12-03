@@ -26,9 +26,6 @@ import com.example.e_curso.core.Usuario;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.model.UsuarioFacade;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class VerUsuarios extends AppCompatActivity {
 
     private final int MODIFY_CODE = 1;
