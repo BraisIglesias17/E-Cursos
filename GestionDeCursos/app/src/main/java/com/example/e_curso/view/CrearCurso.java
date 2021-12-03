@@ -15,13 +15,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.model.CursoFacade;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class CrearCurso extends AppCompatActivity{
@@ -36,7 +34,6 @@ public class CrearCurso extends AppCompatActivity{
 
 
     protected void onCreate(Bundle savedInstanceState) {
-
             super.onCreate(savedInstanceState);
             setContentView(R.layout.crear_modificar_curso);
             this.creador=((MyApplication) this.getApplication()).esCreador();
@@ -80,7 +77,7 @@ public class CrearCurso extends AppCompatActivity{
                     @Override
                     public void onClick(View view) {
                         CrearCurso.this.eliminarCurso(c);
-                        //Toast.makeText(CrearCurso.this,"El curso ha sido eliminado correctamente",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CrearCurso.this,"El curso ha sido eliminado correctamente",Toast.LENGTH_SHORT).show();
                     }
                 });
             }

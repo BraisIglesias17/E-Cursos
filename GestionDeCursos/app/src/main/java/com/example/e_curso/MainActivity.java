@@ -21,8 +21,6 @@ import com.example.e_curso.view.Registro;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Currency;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent subActividad = new Intent( MainActivity.this, Registro.class );
                 MainActivity.this.startActivity(subActividad);
-                //MainActivity.this.startActivityForResult( subActividad,0);
             }
         });
     }

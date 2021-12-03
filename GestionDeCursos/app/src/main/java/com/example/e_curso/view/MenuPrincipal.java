@@ -92,17 +92,6 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
     }
-    /*private void gestionVerCursos(Button b, boolean misCursos, boolean ofertados){
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent verMisCursos=new Intent(MenuPrincipal.this,VerCursos.class);
-
-
-                MenuPrincipal.this.startActivity(verMisCursos);
-            }
-        });
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

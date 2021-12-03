@@ -2,7 +2,6 @@ package com.example.e_curso.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.e_curso.R;
-import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
-import com.example.e_curso.model.CursoFacade;
 import com.example.e_curso.model.UsuarioFacade;
-
-import org.w3c.dom.Text;
-
-import java.util.Date;
 
 public class UsuarioCursorAdapter extends CursorAdapter {
 

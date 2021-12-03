@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
-import com.example.e_curso.core.Curso;
 import com.example.e_curso.core.Usuario;
 import com.example.e_curso.database.DBManager;
 import com.example.e_curso.model.UsuarioFacade;
@@ -64,12 +63,12 @@ public class Registro extends AppCompatActivity {
 
                         Registro.this.startActivity(intent);
                     }else{
-                        Registro.dialogoErrorDatos("Nombre de usuario ocupado",Registro.this);
+                        Registro.dialogoErrorDatos("Nombre de usuario no disponible",Registro.this);
                     }
 
 
                 }else{
-                    Registro.dialogoErrorDatos("Algún campo es vacío o hay algún error en los datos",Registro.this);
+                    Registro.dialogoErrorDatos("Algún campo está vacío o hay algún error en los datos",Registro.this);
                 }
 
             }

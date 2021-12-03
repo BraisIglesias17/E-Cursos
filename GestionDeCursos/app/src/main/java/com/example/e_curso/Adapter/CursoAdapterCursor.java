@@ -3,7 +3,6 @@ package com.example.e_curso.Adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,6 @@ public class CursoAdapterCursor extends CursorAdapter {
         fecha.setText(fechaUtil);
 
         if (!fechaActual.before(curso.getFecha()) && !fechaActual.equals(curso.getFecha())){
-            //nombre.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             fecha.setTextColor(Color.RED);
         }else{
             fecha.setTextColor(Color.BLACK);

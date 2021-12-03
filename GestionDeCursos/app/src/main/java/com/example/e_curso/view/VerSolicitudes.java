@@ -26,7 +26,7 @@ import com.example.e_curso.model.UsuarioFacade;
 
 
 public class VerSolicitudes extends AppCompatActivity {
-    private final String MENSAJE_AYUDA_SOLICITUDES = "Mantenga pulsado sobre la solicitud a gestionar.";
+    private final String MENSAJE_AYUDA_SOLICITUDES = "Mantenga pulsado sobre la solicitud que quiera gestionar";
     private UsuarioFacade uf;
     private DBManager db;
     private UsuarioCursorAdapter cursorAdapter;
@@ -34,7 +34,7 @@ public class VerSolicitudes extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_lista_solicitudes);
         listViewSolicitudes = this.findViewById(R.id.lvListaSolicitudes);
 
@@ -64,12 +64,12 @@ public class VerSolicitudes extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.itemMenuAceptar:
                 aceptarSolicitud(uf.getUsuarioById(id));
-                Toast.makeText(getApplicationContext(),"Usuario aceptado como divulgador",
+                Toast.makeText(getApplicationContext(),"Usuario ACEPTADO como divulgador",
                         Toast.LENGTH_LONG).show();
                 break;
             case R.id.itemMenuRechazar:
                 denegarSolicitud(uf.getUsuarioById(id));
-                Toast.makeText(getApplicationContext(),"Usuario rechazado como divulgador",
+                Toast.makeText(getApplicationContext(),"Usuario RECHAZADO como divulgador",
                         Toast.LENGTH_LONG).show();
                 break;
         }

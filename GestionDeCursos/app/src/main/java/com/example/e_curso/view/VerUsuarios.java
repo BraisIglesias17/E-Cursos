@@ -37,12 +37,11 @@ public class VerUsuarios extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); //No perder la actividad que pasa a segundo plano
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_lista_usuarios);
         listViewUsuarios = this.findViewById(R.id.lvListaUsuarios);
 
         //Inicializacion del entorno
-
         this.db=((MyApplication) this.getApplication()).getDBManager();
         this.uf=new UsuarioFacade(this.db);
 
@@ -50,29 +49,10 @@ public class VerUsuarios extends AppCompatActivity {
         this.cursorAdapter=new UsuarioCursorAdapter(this,cursorUsuarios,uf);
         listViewUsuarios.setAdapter(this.cursorAdapter);
 
-
         //gestion de busquedas
         this.setBusqueda();
 
-
-
         this.registerForContextMenu(listViewUsuarios);
-
-
-        /* QUEDA IMPLEMENTAR NAVEGACION A MODIFICAR Y ELIMINAR
-        listViewUsuarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent modificarUsuario = new Intent(VerUsuarios.this, VerUsuarioConcreto.class);
-                Usuario user = null;
-
-                modificarUsuario.putExtra("nombre",user.getUser());
-                modificarUsuario.putExtra("pos", i);
-
-                VerUsuarios.this.startActivityForResult(modificarUsuario, MODIFY_CODE);
-                return true;
-            }
-        });*/
     }
 
     @Override
@@ -114,7 +94,7 @@ public class VerUsuarios extends AppCompatActivity {
     private void triggerEliminarUsuario(long id) {
         AlertDialog.Builder build=new AlertDialog.Builder(this);
         build.setTitle("Eliminar usuario");
-        build.setMessage("¿Estas seguro de eliminar este usuario?");
+        build.setMessage("¿Estas seguro de querer eliminar este usuario?");
         build.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -189,19 +169,4 @@ public class VerUsuarios extends AppCompatActivity {
             uf.actualizarUsuario(user);
         }
     }
-/*
-    private Usuario mockUpMethod(){
-       String pass="user3";
-       byte [] digest;
-        MessageDigest md = null; //genero un resumen de  la contraseña en claro
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        digest = md.digest(pass.getBytes());
-        Usuario prueba=new Usuario("user3", "usuario no divulgador",digest,"user@mail.com", Usuario.Rol.USER,0);
-        return prueba;
-    }
-*/
 }

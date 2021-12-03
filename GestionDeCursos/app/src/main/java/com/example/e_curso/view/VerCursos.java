@@ -3,13 +3,9 @@ package com.example.e_curso.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,21 +21,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_curso.Adapter.CursoAdapterCursor;
-import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Curso;
 import com.example.e_curso.database.DBManager;
-import com.example.e_curso.general.General;
 import com.example.e_curso.model.AsistirFacade;
 import com.example.e_curso.model.CursoFacade;
 
-import java.util.Date;
 
 public class VerCursos extends AppCompatActivity {
 
 
-    private static final String MENSAJE_AYUDA_CURSOS = "Pulsa sobre un curso para ver las opciones";
+    private static final String MENSAJE_AYUDA_CURSOS = "Pulsa sobre un curso para visualizar las opciones";
 
 
     //ControladorCurso
@@ -58,7 +50,6 @@ public class VerCursos extends AppCompatActivity {
 
 
         this.creador=((MyApplication) this.getApplication()).esCreador();
-        //Curso c2=new Curso("Prueba2","Descripcion de prueba2","tematica2", 0, 30,new Date(120,11,1),0.0, 0);
         DBManager db=((MyApplication) this.getApplication()).getDBManager();
         this.cursos=new CursoFacade(db);
         Intent intent=this.getIntent();
@@ -185,15 +176,14 @@ public class VerCursos extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.tematicas_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        /*spinner.setGravity(Gravity.CENTER);
-        spinner.setBackgroundColor(0xBA68C8);*/
+
         spinner.setAdapter(adapter);
     }
 
     private void setFiltro() {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("Filtro");
-        builder.setMessage("Selecciona una tematica");
+        builder.setMessage("Seleccione una tematica");
 
         View vista=View.inflate(this,R.layout.filtro_cursos_layour,null);
         Spinner spinner1=vista.findViewById(R.id.spinnerFiltroCursos);

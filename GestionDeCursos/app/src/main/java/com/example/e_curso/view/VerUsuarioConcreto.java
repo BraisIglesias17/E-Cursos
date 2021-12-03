@@ -1,35 +1,28 @@
 package com.example.e_curso.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CpuUsageInfo;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_curso.MainActivity;
 import com.example.e_curso.MyApplication;
 import com.example.e_curso.R;
 import com.example.e_curso.core.Usuario;
-import com.example.e_curso.general.General;
 import com.example.e_curso.model.UsuarioFacade;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class VerUsuarioConcreto extends AppCompatActivity{
-    public static final int CODIGO_OK = 0;
-
 
     private UsuarioFacade usuarioFacade;
     private Usuario usuarioActual;
@@ -52,17 +45,13 @@ public class VerUsuarioConcreto extends AppCompatActivity{
         this.usuarioActual=(Usuario) datosUsuario.getSerializableExtra("usuario");
         this.usuarioFacade=new UsuarioFacade(((MyApplication) this.getApplication()).getDBManager());
 
-        Usuario logueado=((MyApplication) this.getApplication()).getUserLogged();
-
         this.rellenarPagina(this.usuarioActual);
-        //nuevoNombre.setText(datosUsuario.getExtras().getString("nombre"));
-
         btModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 AlertDialog.Builder dlg=new AlertDialog.Builder(VerUsuarioConcreto.this);
-                dlg.setMessage("Estas seguro de modificar esta información");
+                dlg.setMessage("¿Estas seguro de modificar esta información?");
                 dlg.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -76,13 +65,13 @@ public class VerUsuarioConcreto extends AppCompatActivity{
                             VerUsuarioConcreto.this.usuarioActual.setRol(Usuario.Rol.USER);
                         }
 
-
                         VerUsuarioConcreto.this.usuarioFacade.actualizarUsuario(VerUsuarioConcreto.this.usuarioActual);
                         if(((MyApplication) VerUsuarioConcreto.this.getApplication()).getUserLogged().getRol()!=Usuario.Rol.ADMIN){
                             ((MyApplication) VerUsuarioConcreto.this.getApplication()).updateUserLogged();
+
                         }
                         VerUsuarioConcreto.this.finish();
-
+                        Toast.makeText(VerUsuarioConcreto.this,"Usuario modificado correctamente",Toast.LENGTH_LONG).show();
                     }
                 });
                 dlg.setNegativeButton("No", null);

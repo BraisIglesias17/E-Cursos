@@ -11,6 +11,7 @@ public class MyApplication extends Application {
     private Usuario logeado;
     private long id_user_logged;
     private DBManager db;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,7 +34,7 @@ public class MyApplication extends Application {
     }
 
     public boolean esAdmin(){
-        boolean toret=false;
+        boolean toret;
 
         switch (logeado.getRol()){
             case ADMIN: toret=true;
@@ -45,7 +46,7 @@ public class MyApplication extends Application {
     }
 
     public boolean esCreador(){
-        boolean toret=false;
+        boolean toret;
 
         switch (logeado.getRol()){
             case DIVUL: toret=true;

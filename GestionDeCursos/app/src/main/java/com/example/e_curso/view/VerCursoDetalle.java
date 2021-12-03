@@ -1,6 +1,5 @@
 package com.example.e_curso.view;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import com.example.e_curso.core.Curso;
 import com.example.e_curso.model.AsistirFacade;
 import com.example.e_curso.model.CursoFacade;
 
-import java.security.MessageDigest;
 
 public class VerCursoDetalle extends AppCompatActivity {
 
@@ -55,7 +53,7 @@ public class VerCursoDetalle extends AppCompatActivity {
                     AsistirFacade af=new AsistirFacade(((MyApplication)(VerCursoDetalle.this.getApplication())).getDBManager());
                     af.insertarParticipacion(((MyApplication)(VerCursoDetalle.this.getApplication())).getId_user_logged(),VerCursoDetalle.this.idCursoActual);
                     VerCursoDetalle.this.finish();
-                    Toast.makeText(VerCursoDetalle.this,"Te has apuntado a este curso",Toast.LENGTH_LONG);
+                    Toast.makeText(VerCursoDetalle.this,"Te has apuntado correctamente al curso",Toast.LENGTH_LONG);
                     apuntarse.setVisibility(View.INVISIBLE);
                 }
             });
