@@ -52,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
                 if(acceder && !admin){
                     Intent menu_principal=new Intent(MainActivity.this, MenuPrincipal.class);
                     MainActivity.this.goTo(menu_principal,"nombeusuario");
-
+                    MainActivity.this.finish();
 
 
 
                 }else if(acceder && admin){
                     Intent menu_principal_admin=new Intent(MainActivity.this, MenuAdministrador.class);
                     MainActivity.this.goTo(menu_principal_admin,"nombeusuario");
+                    MainActivity.this.finish();
 
                 }
                 else{

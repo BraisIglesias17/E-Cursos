@@ -226,25 +226,35 @@ public class VerCursos extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String filtro=charSequence.toString();
                 switch (VerCursos.this.caso){
-                    case "GENERALES": if(filtro==""){
+                    case "GENERALES":
+                                    /*if(filtro==""){
                                             Cursor c=VerCursos.this.cursos.getCursosFechasPrueba();
                                             VerCursos.this.adapterCursos.changeCursor(c);
                                     }else{
                                              Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_NAME,filtro);
                                                 VerCursos.this.adapterCursos.changeCursor(c);
-                                    }
+                                    }*/
+                                    Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_NAME,filtro);
+                                    VerCursos.this.adapterCursos.changeCursor(c);
                         break;
-                    case "APUNTADOS": //NECESARIO IMPLEMENTAR INSERCCION DE TABLAS
+                    case "APUNTADOS":
+                                        Long id1=((MyApplication)VerCursos.this.getApplication()).getId_user_logged();
+                                        AsistirFacade af=new AsistirFacade(((MyApplication)VerCursos.this.getApplication()).getDBManager());
+                                        Cursor c1=af.getCursosApuntadosBuscar(id1,filtro);
+                                        VerCursos.this.adapterCursos.changeCursor(c1);
                         break;
                     case "OFERTADOS":
                                         Long id=((MyApplication)VerCursos.this.getApplication()).getId_user_logged();
-                                        if(filtro==""){
+                                        /*if(filtro==""){
                                             Cursor c=VerCursos.this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(id));
                                             VerCursos.this.adapterCursos.changeCursor(c);
                                         }else{
                                             Cursor c=VerCursos.this.cursos.getCursosFiltradosDivulgador(DBManager.CURSO_COLUMN_NAME,filtro,Long.toString(id));
                                             VerCursos.this.adapterCursos.changeCursor(c);
-                                        }
+                                        }*/
+                                        Cursor c2=VerCursos.this.cursos.getCursosFiltradosDivulgador(DBManager.CURSO_COLUMN_NAME,filtro,Long.toString(id));
+                                        VerCursos.this.adapterCursos.changeCursor(c2);
+
                         break;
                 }
 

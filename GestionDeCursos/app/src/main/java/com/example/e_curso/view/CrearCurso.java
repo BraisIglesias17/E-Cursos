@@ -55,7 +55,11 @@ public class CrearCurso extends AppCompatActivity{
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        CrearCurso.this.addCurso();
+                        if(CrearCurso.this.comprobarDatos())
+                            CrearCurso.this.addCurso();
+                        else{
+                            Registro.dialogoErrorDatos("Algún campo esta vacío o es erroneo",CrearCurso.this);
+                        }
                     }
                 });
             }else{
@@ -111,6 +115,7 @@ public class CrearCurso extends AppCompatActivity{
         EditText txtNumAsist=(EditText)this.findViewById(R.id.etMaxAsistentes);
         Spinner txtTematica= (Spinner) this.findViewById(R.id.spinnerTematica);
 
+
         String nombre=txtNombreCurso.getText().toString();
         String descripcion=txtDescripcion.getText().toString();
         String tematica=(String) txtTematica.getSelectedItem();
@@ -119,6 +124,7 @@ public class CrearCurso extends AppCompatActivity{
         int numAsist=Integer.parseInt(txtNumAsist.getText().toString());
         long id_Creador=((MyApplication) this.getApplication()).getId_user_logged();
         Curso toAdd=new Curso(nombre,descripcion,tematica,0,numAsist,this.fecha,duracion,id_Creador);
+
 
         CursoFacade cf=new CursoFacade(((MyApplication) this.getApplication()).getDBManager());
         cf.insertaCurso(toAdd);

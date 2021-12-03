@@ -97,7 +97,7 @@ public class DBManager extends SQLiteOpenHelper{
                     USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO + " INTEGER,"+
                     "foreign key ("+USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" ) references "+USUARIO_TABLE_NAME+"("+USUARIO_COLUMN_ID+"),"+
                     "foreign key ("+USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" ) references "+CURSO_TABLE_NAME+"("+CURSO_COLUMN_ID+"),"+
-                    "PRIMARY KEY("+USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+","+USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+")"+
+                    "PRIMARY KEY("+USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+","+USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+")"+
                     ")");
 
             sqLiteDatabase.setTransactionSuccessful();

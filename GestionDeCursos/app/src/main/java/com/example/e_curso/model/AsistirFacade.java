@@ -39,6 +39,17 @@ public class AsistirFacade extends  GeneralFacade{
         //SELECT * FROM USUARIO_ASISTE_CURSO,CURSO  WHERE USUARIO_ASISTE_CURSO._id_USUARIO == 8 AND USUARIO_ASISTE_CURSO._id_CURSO=CURSO._id
         return toret;
     }
+
+    public Cursor getCursosApuntadosBuscar(long userID, String nombre){
+        Cursor toret=null;
+        nombre='%'+nombre+'%';
+        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME +","+DBManager.CURSO_TABLE_NAME
+                +" WHERE "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME+"."+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" == ? AND "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == "+DBManager.CURSO_COLUMN_ID
+                +" AND "+DBManager.CURSO_TABLE_NAME+"."+DBManager.CURSO_COLUMN_NAME+" LIKE ?"
+                ,new String[]{Long.toString(userID),nombre});
+
+        return toret;
+    }
     public boolean eliminarParticipacion(long userID,long cursoID){
         SQLiteDatabase db=this.dbManager.getWritableDatabase();
 
