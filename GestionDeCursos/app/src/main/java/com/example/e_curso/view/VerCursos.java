@@ -64,14 +64,17 @@ public class VerCursos extends AppCompatActivity {
         TextView titulo=this.findViewById(R.id.tvVerCursos);
         switch (this.caso){
             case "GENERALES": titulo.setText("Cursos"); cursos=this.cursos.getCursosFechasPrueba(); this.vistaParaApuntarse=true;
+                this.drawFilter(true);
                 break;
             case "APUNTADOS": titulo.setText("Mis Cursos");
                 AsistirFacade af=new AsistirFacade(((MyApplication) this.getApplication()).getDBManager());
                 cursos=af.getCursosApuntados(((MyApplication) this.getApplication()).getId_user_logged());
                 this.vistaParaApuntarse=false;
+                this.drawFilter(false);
                 break;
             case "OFERTADOS": titulo.setText("Mis cursos publicados");  cursos=this.cursos.getCursosFiltrados(DBManager.CURSO_COLUMN_USUARIO_ID,Long.toString(((MyApplication)this.getApplication()).getId_user_logged()));
                 this.vistaParaApuntarse=false;
+                this.drawFilter(false);
                 break;
         }
 
@@ -83,14 +86,6 @@ public class VerCursos extends AppCompatActivity {
         //gestion de busquedas
         this.setBusqueda();
 
-        //filtro
-        Button btFiltrar=this.findViewById(R.id.btFiltrarCursos);
-        btFiltrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                VerCursos.this.setFiltro();
-            }
-        });
 
 
         this.listViewCursos= (ListView) this.findViewById(R.id.listViewCursosGenerales);
@@ -114,6 +109,19 @@ public class VerCursos extends AppCompatActivity {
 
 
 
+    }
+
+    private void drawFilter(boolean b) {
+        //filtro
+        Button btFiltrar=this.findViewById(R.id.btFiltrarCursos);
+        if(!b)
+            btFiltrar.setVisibility(View.INVISIBLE);
+        btFiltrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VerCursos.this.setFiltro();
+            }
+        });
     }
 
     public Cursor gestionVerCursos(String caso){
