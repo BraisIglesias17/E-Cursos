@@ -154,23 +154,6 @@ public class VerUsuarios extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MODIFY_CODE
-                && resultCode == Activity.RESULT_OK) {
-
-            Usuario user = new Usuario();
-            user.setUser(data.getExtras().getString("nombre"));
-            user.setNombreCompleto(data.getExtras().getString("apellido"));
-            user.setEmail(data.getExtras().getString("email"));
-            if(data.getExtras().getBoolean("divulgador"))
-                user.setRol(Usuario.Rol.DIVUL);
-            else
-                user.setRol(Usuario.Rol.USER);
-            uf.actualizarUsuario(user);
-        }
-    }
     private void gestionAyuda() {
         ImageView img=this.findViewById(R.id.imgHelp_Usuarios);
         img.setOnClickListener(new View.OnClickListener() {
