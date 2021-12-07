@@ -62,6 +62,7 @@ public class Registro extends AppCompatActivity {
                         Intent intent = new Intent(Registro.this, MainActivity.class);
 
                         Registro.this.startActivity(intent);
+                        Registro.this.finish();
                     }else{
                         Registro.dialogoErrorDatos("Nombre de usuario no disponible",Registro.this);
                     }
@@ -122,8 +123,8 @@ public class Registro extends AppCompatActivity {
 
         if(usuario.getText()==null || usuario.getText().toString().isEmpty()
                 ||nombreCompleto.getText()==null ||nombreCompleto.getText().toString().isEmpty()
-                || email.getText() == null ||nombreCompleto.getText().toString().isEmpty()
-                || passwd.getText()==null ||nombreCompleto.getText().toString().isEmpty()) {
+                || email.getText() == null ||email.getText().toString().isEmpty()
+                || passwd.getText()==null ||passwd.getText().toString().isEmpty()) {
             toret=false;
         }
 
