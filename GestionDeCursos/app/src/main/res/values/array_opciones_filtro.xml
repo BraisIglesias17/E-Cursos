@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tematicas_array_filtro">
+        <item>TODOS</item>
+        <item>SALUD</item>
+        <item>TECNOLOGIA</item>
+        <item>DEPORTE</item>
+        <item>MEDITACION</item>
+        <item>ECONOMIA</item>
+        <item>OTRO</item>
+    </string-array>
+</resources>

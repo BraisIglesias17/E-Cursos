@@ -73,6 +73,15 @@ public class UsuarioFacade extends GeneralFacade{
         return super.deleteElement(atributo,valor);
     }
 
+
+    public boolean actualizarSolicitudUsuario(Usuario usuario){
+        ContentValues valores=new ContentValues();
+        valores.put(DBManager.USUARIO_COLUMN_SOLICITUD,usuario.getEstadoSolicitud());
+        valores.put(DBManager.USUARIO_COLUMN_ROL,usuario.getRol().toString());
+
+        return super.updateElement(DBManager.USUARIO_COLUMN_NAME+" = ?",valores,new String[]{usuario.getUser()});
+    }
+
     public boolean actualizarUsuario(Usuario usuario){
         ContentValues valores=new ContentValues();
         valores.put(DBManager.USUARIO_COLUMN_NAME,usuario.getUser());
@@ -84,16 +93,7 @@ public class UsuarioFacade extends GeneralFacade{
         return super.updateElement(DBManager.USUARIO_COLUMN_NAME+" = ?",valores,new String[]{usuario.getUser()});
     }
 
-    public boolean actualizarSolicitudUsuario(Usuario usuario){
-        ContentValues valores=new ContentValues();
-        valores.put(DBManager.USUARIO_COLUMN_SOLICITUD,usuario.getEstadoSolicitud());
-        valores.put(DBManager.USUARIO_COLUMN_ROL,usuario.getRol().toString());
 
-        return super.updateElement(DBManager.USUARIO_COLUMN_NAME+" = ?",valores,new String[]{usuario.getUser()});
-    }
-    public Cursor getUsuarioCursorById(long id){
-        return super.getById(id);
-    }
 
     public Usuario getUsuarioById(long id){
         Cursor c=super.getById(id);
@@ -135,18 +135,7 @@ public class UsuarioFacade extends GeneralFacade{
         return toret;
     }
 
-    public  Cursor getSolicitudesPendientes(){
-        return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_SOLICITUD,Integer.toString(Usuario.PENDIENTE));
 
-    }
-    public  Cursor getSolicitudesRechazadas(){
-        return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_SOLICITUD,Integer.toString(Usuario.RECHAZADO));
-
-    }
-    public  Cursor getSolicitudesAceptadas(){
-        return super.getTablaFiltrada(DBManager.USUARIO_COLUMN_SOLICITUD,Integer.toString(Usuario.ACEPTADO));
-
-    }
 
     public Cursor logIn(String user){
 

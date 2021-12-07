@@ -182,7 +182,7 @@ public class VerCursos extends AppCompatActivity {
 
     private void rellenarSpinner(Spinner spinner) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.tematicas_array, android.R.layout.simple_spinner_item);
+                R.array.tematicas_array_filtro, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
@@ -204,7 +204,7 @@ public class VerCursos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String filtro=(String) spinner1.getSelectedItem();
-                if(filtro.equals("OTRO")){
+                if(filtro.equals("TODOS")){
                     filtro="%";
                 }
                 Cursor c=null;
