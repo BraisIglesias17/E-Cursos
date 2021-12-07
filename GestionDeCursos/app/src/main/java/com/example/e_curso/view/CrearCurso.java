@@ -81,7 +81,6 @@ public class CrearCurso extends AppCompatActivity{
                     @Override
                     public void onClick(View view) {
                         CrearCurso.this.eliminarCurso(c);
-                        Toast.makeText(CrearCurso.this,"El curso ha sido eliminado correctamente",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -246,7 +245,7 @@ public class CrearCurso extends AppCompatActivity{
         });
 
     }
-    private boolean comprobarDatos(){
+    private boolean comprobarDatos() throws NumberFormatException {
         boolean toret=true;
 
         EditText nombreCurso=(EditText)this.findViewById(R.id.etNombreCurso);
@@ -265,6 +264,9 @@ public class CrearCurso extends AppCompatActivity{
             try {
                 double d=Double.parseDouble(duracion.getText().toString());
                 int i=Integer.parseInt(numAsist.getText().toString());
+                if (i<=0)
+                    toret = false;
+
             }catch (NumberFormatException exc){
                 toret=false;
             }
