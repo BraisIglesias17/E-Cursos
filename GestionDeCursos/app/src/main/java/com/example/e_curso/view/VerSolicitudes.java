@@ -119,7 +119,7 @@ public class VerSolicitudes extends AppCompatActivity {
     }
 
     private void gestionAyuda() {
-        ImageView img=this.findViewById(R.id.imgHelp_Solicitudes);
+        ImageView img=this.findViewById(R.id.imgHelp_Usuarios);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

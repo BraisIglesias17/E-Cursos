@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.example.e_curso.model.UsuarioFacade;
 public class VerUsuarios extends AppCompatActivity {
 
     private final int MODIFY_CODE = 1;
+    public static String MENSAJE_AYUDA_USUARIOS="Manten pulsado sobre un usuario para ver las acciones disponibles";
 
     private UsuarioFacade uf;
     private DBManager db;
@@ -51,7 +53,7 @@ public class VerUsuarios extends AppCompatActivity {
 
         //gestion de busquedas
         this.setBusqueda();
-
+        this.gestionAyuda();
         this.registerForContextMenu(listViewUsuarios);
     }
 
@@ -168,5 +170,19 @@ public class VerUsuarios extends AppCompatActivity {
                 user.setRol(Usuario.Rol.USER);
             uf.actualizarUsuario(user);
         }
+    }
+    private void gestionAyuda() {
+        ImageView img=this.findViewById(R.id.imgHelp_Usuarios);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                androidx.appcompat.app.AlertDialog.Builder builder=new androidx.appcompat.app.AlertDialog.Builder(VerUsuarios.this);
+                builder.setTitle("Ayuda");
+                builder.setMessage(MENSAJE_AYUDA_USUARIOS);
+                builder.setNeutralButton("Volver",null);
+                builder.create().show();
+
+            }
+        });
     }
 }
