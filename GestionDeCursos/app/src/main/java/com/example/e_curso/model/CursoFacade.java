@@ -54,12 +54,7 @@ public class CursoFacade extends GeneralFacade{
         return toret;
     }
 
-    /*public Cursor getCursos(){
-        Cursor toret=null;
 
-        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME,null);
-        return toret;
-    }*/
     public Cursor getCursos(){
             return super.getElements();
     }
@@ -72,40 +67,6 @@ public class CursoFacade extends GeneralFacade{
         return toret;
     }
 
-    /*
-    public boolean createCurso(Curso curso){
-        SQLiteDatabase writableDatabase = dbManager.getWritableDatabase();
-        boolean toret=false;
-        try{
-            writableDatabase.beginTransaction();
-            writableDatabase.execSQL(
-                    "INSERT INTO " +DBManager.CURSO_TABLE_NAME +
-                            "(" +
-                            DBManager.CURSO_COLUMN_NAME +
-                            ","+
-                            DBManager.CURSO_COLUMN_DESCRIPCION+
-                            ","+
-                            DBManager.CURSO_COLUMN_TEMATICA +
-                            ","+
-                            DBManager.CURSO_COLUMN_DURACION +
-                            ","+
-                            DBManager.CURSO_COLUMN_FECHA +
-                            ","+
-                            DBManager.CURSO_COLUMN_MAX_ASIST +
-                            ","+
-                            DBManager.CURSO_COLUMN_USUARIO_ID +
-                            ") VALUES (?,?,?,?,?,?,0)"
-                    , new Object[]{curso.getNombreCurso(),curso.getDescripcion(),curso.getTematica(),
-                    Double.toString(curso.getDuracion()),curso.getFechaDB(),Integer.toString(curso.getMaxAsistentes())});
-            writableDatabase.setTransactionSuccessful();
-            toret=true;
-        }catch(SQLException exception){
-            Log.e(CursoFacade.class.getName(), "createCurso", exception);
-        }finally {
-            writableDatabase.endTransaction();
-            return toret;
-        }
-    }*/
     public boolean insertaCurso(Curso curso){
 
         return super.createObjectInDB("INSERT INTO " +DBManager.CURSO_TABLE_NAME +
@@ -128,46 +89,11 @@ public class CursoFacade extends GeneralFacade{
 
     }
 
-    /*public boolean deleteCurso(String nombre){
-        SQLiteDatabase db=this.dbManager.getWritableDatabase();
 
-        boolean toret=false;
-
-        try{
-            db.execSQL("DELETE FROM "+DBManager.CURSO_TABLE_NAME+" WHERE "+DBManager.CURSO_COLUMN_NAME+" == ?",new String[]{nombre
-            });
-            toret=true;
-        }catch (Exception exc){
-            Log.e("DELETE ACTION",exc.getMessage());
-        }
-
-        return toret;
-    }*/
     public boolean deleteCurso(Curso curso){
         return super.deleteElement(DBManager.CURSO_COLUMN_NAME,curso.getNombreCurso());
     }
-    /*public boolean updateCurso(Curso c){
-        SQLiteDatabase db=this.dbManager.getWritableDatabase();
 
-        ContentValues valores=new ContentValues();
-        valores.put(DBManager.CURSO_COLUMN_NAME,c.getNombreCurso());
-        valores.put(DBManager.CURSO_COLUMN_DESCRIPCION,c.getDescripcion());
-        valores.put(DBManager.CURSO_COLUMN_DURACION,c.getDuracion());
-        valores.put(DBManager.CURSO_COLUMN_FECHA,c.getFechaDB());
-        valores.put(DBManager.CURSO_COLUMN_MAX_ASIST,c.getMaxAsistentes());
-        valores.put(DBManager.CURSO_COLUMN_ASIST,c.getNumAsistentes());
-        valores.put(DBManager.CURSO_COLUMN_TEMATICA,c.getTematica());
-        boolean toret=false;
-
-        try{
-            db.update(DBManager.CURSO_TABLE_NAME,valores,DBManager.CURSO_COLUMN_NAME+" = ?",new String[]{c.getNombreCurso()});
-            toret=true;
-        }catch (Exception exc){
-            Log.e("DELETE ACTION",exc.getMessage());
-        }
-
-        return toret;
-    }*/
     public boolean updateCurso(Curso c){
         ContentValues valores=new ContentValues();
         valores.put(DBManager.CURSO_COLUMN_NAME,c.getNombreCurso());
@@ -196,13 +122,6 @@ public class CursoFacade extends GeneralFacade{
     public Cursor getCursosFiltrados(String atributo,String tematica){
         return super.getTablaFiltrada(atributo,tematica);
     }
-    /*public Cursor getCursosFiltrados(String tematica){
-        Cursor toret=null;
-
-        toret=this.dbManager.getReadableDatabase().rawQuery("SELECT * FROM "+DBManager.CURSO_TABLE_NAME +" WHERE "+DBManager.CURSO_COLUMN_TEMATICA+ " LIKE ? ",new String[]{tematica});
-
-        return toret;
-    }*/
 
     public boolean actualizarAsistentes(String name, int numero){
         SQLiteDatabase writableDatabase = super.dbManager.getWritableDatabase();

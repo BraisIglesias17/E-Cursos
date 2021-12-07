@@ -137,7 +137,6 @@ public class VerSolicitudes extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         updateListView();
-
     }
 
     @Override
