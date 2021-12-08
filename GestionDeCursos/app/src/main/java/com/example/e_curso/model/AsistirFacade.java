@@ -1,6 +1,7 @@
 package com.example.e_curso.model;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.lang.UScript;
 import android.text.style.AbsoluteSizeSpan;
@@ -55,14 +56,19 @@ public class AsistirFacade extends  GeneralFacade{
         boolean toret=false;
 
         try{
+            db.beginTransaction();
             db.execSQL("DELETE FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME+" WHERE "+ DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == ? AND "+DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_USUARIO+" == ?"
                     ,new Object[]{Long.toString(cursoID),Long.toString(userID)});
+            db.setTransactionSuccessful();
             toret=true;
-        }catch (Exception exc){
+        }catch (SQLException exc){
             Log.e("DELETE ACTION",exc.getMessage());
+        }finally {
+            db.endTransaction();
+            return toret;
         }
 
-        return toret;
+
     }
 
     public boolean eliminarParticipacionesDeCurso(long cursoID){
@@ -71,14 +77,17 @@ public class AsistirFacade extends  GeneralFacade{
         boolean toret=false;
 
         try{
+            db.beginTransaction();
             db.execSQL("DELETE FROM "+DBManager.USUARIO_ASISTE_CURSO_TABLE_NAME+" WHERE "+ DBManager.USUARIO_ASISTE_CURSO_COLUMN_ID_CURSO+" == ?  "
                     ,new Object[]{Long.toString(cursoID)});
+            db.setTransactionSuccessful();
             toret=true;
-        }catch (Exception exc){
+        }catch (SQLException exc){
             Log.e("DELETE ACTION",exc.getMessage());
+        }finally {
+            db.endTransaction();
+            return toret;
         }
-
-        return toret;
     }
 
     public boolean getParticipacion(long idCurso,long idUsuario){

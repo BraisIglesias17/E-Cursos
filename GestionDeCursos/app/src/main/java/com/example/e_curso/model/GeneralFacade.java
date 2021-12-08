@@ -56,14 +56,17 @@ public abstract class GeneralFacade {
         boolean toret=false;
 
         try{
+            db.beginTransaction();
             db.execSQL("DELETE FROM "+this.nombreTabla+" WHERE "+atributo+" == ?",new Object[]{valor
             });
+            db.setTransactionSuccessful();
             toret=true;
-        }catch (Exception exc){
+        }catch (SQLException exc){
             Log.e("DELETE ACTION",exc.getMessage());
+        }finally{
+            db.endTransaction();
+            return toret;
         }
-
-        return toret;
     }
     public boolean updateElement(String whereClause, ContentValues valores,String[] whereParams){
         SQLiteDatabase db=this.dbManager.getWritableDatabase();
@@ -71,13 +74,16 @@ public abstract class GeneralFacade {
         boolean toret=false;
 
         try{
+            db.beginTransaction();
             db.update(this.nombreTabla,valores,whereClause,whereParams);
+            db.setTransactionSuccessful();
             toret=true;
-        }catch (Exception exc){
+        }catch (SQLException exc){
             Log.e("UPDATE ACTION",exc.getMessage());
+        }finally {
+            db.endTransaction();
+            return toret;
         }
-
-        return toret;
     }
     public Cursor getTablaFiltrada(String atributo,String filtro){
         Cursor toret=null;
